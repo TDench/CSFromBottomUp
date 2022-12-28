@@ -2,6 +2,6 @@
 
 * [簡介](README.md)
 
-## Group 1
+## 第三章，電腦架構 <a href="#03_ComputerArchitecture" id="03_ComputerArchitecture"></a>
 
-* [Page 1](group-1/page-1.md)
+* [Page 1](03\_ComputerArchitecture/page-1.md)
