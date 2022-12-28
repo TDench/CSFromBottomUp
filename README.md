@@ -1,8 +1,8 @@
-# 簡介
+# 從下而上的電腦科學(Computer Science from the Bottom Up)
 
 ## 歡迎
 
-歡迎來到從下而上的電腦科學。本書翻譯自 Ian Wienand 的 Computer Science from the Bottom Up。[https://www.bottomupcs.com/](https://www.bottomupcs.com/)
+歡迎來到從下而上的電腦科學。本書翻譯自 **Ian Wienand** 的 Computer Science from the Bottom Up。[https://www.bottomupcs.com/](https://www.bottomupcs.com/)
 
 ## 作者的想法
 
