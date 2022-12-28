@@ -1,23 +1,22 @@
 # 簡介
 
-### 歡迎
+## 歡迎
 
-歡迎來到從下而上的電腦科學。本書翻譯自 Ian Wienand 的 Computer Science from the Bottom Up。
+歡迎來到從下而上的電腦科學。本書翻譯自 Ian Wienand 的 Computer Science from the Bottom Up。[https://www.bottomupcs.com/](https://www.bottomupcs.com/)
 
-#### Philosophy
+## 作者的想法
 
-In a nutshell, what you are reading is intended to be a shop class for computer science. Young computer science students are taught to "drive" the computer; but where do you go to learn what is under the hood? Trying to understand the operating system is unfortunately not as easy as just opening the bonnet. The current Linux kernel runs into the millions of lines of code, add to that the other critical parts of a modern operating system (the compiler, assembler and system libraries) and your code base becomes unimaginable. Further still, add a University level operating systems course (or four), some good reference manuals, two or three years of C experience and, just maybe, you might be able to figure out where to _start looking_ to make sense of it all.
+簡單的來說，你接下來要閱讀的東西就是電腦科學的手把手實作課程。年輕的電腦科學學生被教導成如何去使用電腦。但是要去哪裡學習更底層的東西呢?理解作業系統不像是車子打開引擎蓋就可以一探究竟，如今Linux C核心(Kernel)內部運行著數百萬行的程式碼，再加上一些現代作業系統中需要執行的關鍵部分(編譯器、組譯器(assembler)、系統函式庫)，我們寫程式的基礎設施根本無法想像。然後就變成了，使用大學等級的作業系統課程知識，加上兩三年的C語言程式經驗，或許(也只是或許)，你才有機會知道要從哪裡開始看懂這些架構。
 
-To keep with the car analogy, the prospective student is starting out trying to work on a Formula One engine without ever knowing how a two stroke motor operates. During their shop class the student should pull apart, twist, turn and put back together that two stroke motor, and consequentially have a pretty good framework for understanding just how the Formula One engine works. Nobody will expect them to be a Formula One engineer, but they are well on their way!
+就好像有些學生可能還沒有搞清出二行程引擎就想要去做F1賽車的引擎，理論上應該要先了解最簡單的引擎構造，然後分解、優化、重新組合之後，有了概念再來理解F1賽車引勤的工作原理。我們不期望學生馬上就能變成F1賽車引擎工程師，但藉由這樣的學習路程，我們才會離目標越來越近
 
-#### 為什麼要從下而上學習
+## 為什麼要從下而上學習
 
 不是每個人都願意參加手工藝課程，從無到有的創造出東西。大多數的人只想要開車，不會想要憑空做出一台車。而一般的程式課程也考慮到了這點，所以大致上的電腦科學都是「由上而下」的教學：從應用程式，高級語言，軟體設計，開發原理，資料結構。或許可能會學一些簡單不深入的二進位，二進位邏輯，或是更底層的一些概念與知識，如暫存器(Register)、CPU指令(opcodes)。
 
 本書的目標就是完全跟剛剛所說的方向相反的教學，從作業系統基礎講到應用程式是如何被編譯與執行
 
+## 開源萬歲XD
 
+多虧了開源技術([Open Source](https://www.bottomupcs.com/gloss01.html#opensource))，這本書才可能完成。在Linux 出現在這個世界之前，我們上課就像是在不能打開引擎蓋的車子上面學習車子的結構，如今我們可以打開這個引擎蓋，戳看看這個零件有什麼用途，做更棒的是，我們可以直接拆引擎下來做自己想要做的任何的事。
 
-#### Enabling Technologies
-
-This book is only possible thanks to the development of [Open Source](https://www.bottomupcs.com/gloss01.html#opensource) technologies. Before Linux it was like taking a shop course with a car that had its bonnet welded shut; today we are in a position to open that bonnet, poke around with the insides and, better still, take that engine and use it to do whatever we want.
