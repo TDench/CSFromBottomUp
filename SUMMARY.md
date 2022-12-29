@@ -4,4 +4,4 @@
 
 ## 第三章，電腦架構 <a href="#03_ComputerArchitecture" id="03_ComputerArchitecture"></a>
 
-* [CPU](03\_ComputerArchitecture/cpu.md)
+* [CPU](03\_ComputerArchitecture/page-1.md)
