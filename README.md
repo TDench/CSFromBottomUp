@@ -2,7 +2,13 @@
 
 ## 歡迎
 
-歡迎來到從下而上的電腦科學。本書翻譯自 **Ian Wienand** 的 Computer Science from the Bottom Up。[https://www.bottomupcs.com/](https://www.bottomupcs.com/)
+歡迎來到從下而上的電腦科學。
+
+* 本書翻譯自 **Ian Wienand** 的 Computer Science from the Bottom Up。[https://www.bottomupcs.com/](https://www.bottomupcs.com/)
+* 翻譯的時候我基本上不是逐字翻譯，有些是為了更容易理解做的中文語句調整。有些為了解釋新增了一些自己的想法在上面，如果有翻譯錯誤或理解錯誤，麻煩各位路見不平拿patch來填。拜託QQ\
+  [https://github.com/TDench/CSFromBottomUp](https://github.com/TDench/CSFromBottomUp)
+
+
 
 ## 作者的想法
 

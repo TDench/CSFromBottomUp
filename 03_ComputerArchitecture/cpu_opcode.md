@@ -54,13 +54,9 @@
 
 **算數邏輯單元(**_**Arithmetic Logic Unit,**_** ALU)** 就是CPU的的核心，他讀取暫存器的數值，執行各種CPU運算操作。現代的處理器有很多個ALU，每個都可以獨立工作。例如 intel Pentium  系列的處理器就同時存在快的ALU跟慢的ALU，快的比較小(可以塞更多顆、執行簡單常見任務)，慢得比較大顆，但是可以執行其他所有的CPU操作。
 
-位置生成單元(_Address Generation Unit,_ AGU)，處理快取(cache)跟主要記憶體的溝通。可以讓CPU讀取到正確的記憶體位置的那個數值，並且把計算之後的結果返回指定的記憶體位置。
+**位置生成單元(**_**Address Generation Unit,**_** AGU)**，處理快取(cache)跟主要記憶體的溝通。可以讓CPU讀取到正確的記憶體位置的那個數值，並且把計算之後的結果返回指定的記憶體位置。
 
 浮點數暫存器的概念大概都差不多，但在不同的製造商之中有不同的專業術語跟結構
-
-
-
-
 
 ### **Pipelining**
 
@@ -68,59 +64,57 @@
 
 我們可以把 pipeline 想像成水管裡面有很多彈珠，彈珠就是 CPU指令。理想的情況下，你會把你的彈珠塞到其中一端，一個接著一個塞，照著時脈塞進去。一旦整個水管滿了，你推入一個新的彈珠(指令)就會把所有的彈珠(指令)往前推一格，然後會有一個彈珠掉出來(答案掉出來)。
 
-但是分支指令會破壞這個運作模式，因為他們可能會，也可能不會跳著執行指令。如果你是一條水管，你必須要猜猜看接下來會往哪個分支走，
+但是分支指令會破壞這個運作模式，因為他們可能會，也可能不會跳著執行指令。如果你是一條水管，現代 CPU 的作法就是會先猜猜看會往哪個分支走，所以你就會知道接下來要執行什麼指令。如果你猜對了，那就會運行的很順暢，相反的，如果你猜錯了，你就會浪費很多時間，把水管理面的指令通通清楚，然後重新再來一次。
 
-但是，分支指令会对这个模型造成破坏，因为它们可能会或不会导致执行从不同的地方开始。如果您是管道，您将必须基本上猜测哪个分支将走向，所以您知道哪些指令要引入到管道中。相反，如果处理器预测错误，则浪费大量时间，必须清除管道，然后重新启动。
+這個過程通常被稱為 _`pipeline flush`_ ，也就是描述從水管中清空你所有的彈珠指令的行為。
 
-这一过程通常被称为_管道冲洗_,停止以及从您的软管中清空您的所有弹珠！
-
-.
-
-Branch instruction play havoc with this model however, since they may or may not cause execution to start from a different place. If you are pipelining, you will have to basically guess which way the branch will go, so you know which instructions to bring into the pipeline. If the CPU has predicted correctly, everything goes fine\![2](https://www.bottomupcs.com/ch03.html#the\_cpu\_s3\_s2\_para3\_footnote1-fnote) Conversely, if the processor has predicted incorrectly it has wasted a lot of time and has to clear the pipeline and start again.
-
-This process is usually referred to as a _pipeline flush_ and is analogous to having to stop and empty out all your marbles from your hose!
-
-**1.3.2.1 Branch Prediction**
+#### **分支預測 Branch Prediction**
 
 pipeline flush, predict taken, predict not taken, branch delay slots
 
-**1.3.3 Reordering**
+### **重新排列 Reordering**
 
-In fact, if the CPU is the hose, it is free to reorder the marbles within the hose, as long as they pop out the end in the same order you put them in. We call this _program order_ since this is the order that instructions are given in the computer program.
+如果把 CPU 當作是水管，他可以自由的重新排列裡面的彈珠，只要他最後彈出來的順序跟你放的順序相同就可以。我們稱這種順序叫做 _program order_  因為這個是指令在電腦程式中的順序。&#x20;
+
+```
+// instruction stream 
+1: r3 = r1 * r2
+2: r4 = r2 + r3
+3: r7 = r5 * r6
+4: r8 = r1 + r7
+```
+
+考慮一組指令，長的跟上面一樣，指令2要等指令1 完成後才可以開始。這表示這個pipeline需要等待( stall) 因為他需要上一個指令的結果。此外，指令3跟指令4也是類似的關係，也就是指令4要等待r7 的結果，才可以開始運算。但是，指令２跟指令3 完全不相關，以就是他們在完全不相關的暫存器上面運算。所以當我們交換指令2跟3，並不會影響結果，這樣會是一個更有效率的安排，因為執行完指令1之後可以馬上執行指令3，不需要等待指令1執行完之後在執行指令3 。
+
+但是，當我們在些非常底層的程式碼(i.e. 嵌入式或是driver)的時候，為了安全性，會要求指令執行的順序，這種要求我們稱為　_memory semantics 。_如果你要 a_cquire_ semantics代表你必須保證先前所有指令的結果已經完成。如果你要 _release_ semantics 代表之後所有的指令應該都要看得到你現在的指令執行結果。另外一種更嚴格的叫做 _memory barrier_ 或是 _memory fence，_這個代表指令的結果必須先儲存到記憶體之中，才可以執行其他操作。
+
+在某些CPU架構中，處理器會保證幫你達成這些語意(semantics)，但也有些架構需要你顯示的指定語意。大部分程式設計師不太需要擔心他們，但是會看到這些術語。
+
+### CISC v RISC
+
+電腦有兩種架構，一種是複雜指令集(_Complex Instruction Set Computer,_ CISC) ，一種是精簡指令集(_Reduced Instruction Set Computer,_ RISC)
+
+我們剛剛在第一個範例之中，我們就顯示的把數值加到暫存器，然後執行一個加法，然後存到另外一個暫存器，並把結果儲存到記憶體之中。這個就是RISC的運算執行方法的一個例子。也就是，只對暫存器的數值執行操作，並且顯式地從記憶體存取數值。
+
+CISC 的方法則是一個單一的指令，就可以從記憶體讀取資料，在運算單元執行加法，最後把執行的結果除存回記憶體。這就表示一個指令可能會是很多個 CPU 週期。無論如何，這兩種方法都實現了一樣的目標。
+
+所有現代處理器都被認為是 RISC 架構。因為以下這些原因
+
+* RISC 使得撰寫組合語言變得困難，但大部分的程式工程師都是用高階寫程式，所以這個困難產生組合語言的困難工作就是編譯器的責任了，所以這個缺點瑕不掩瑜
+* 因為 RISC 處理企的指令比較簡單，所以會CPU 晶片裡面可以放更多的暫存器。依照目前的記憶體架構，暫存器是最快的記憶體類型，而且所有的指令最終都必須在暫存器中執行，所以在其他條件都一樣的情況下，更多的暫存器可以提昇效能。
+* 因為所有的指令都同時執行，所以可以做pipeline。我們知道這個操作需要連續不斷的把指令輸入處理器，如果有些指令要花很久的時間，有些指令只花一點時間，那這個pipeline就會變得很複雜，就很難變得很有效率。
+
+### **EPIC**
+
+intel 的 Itanium 處理器，也就是這本書範例中使用的處理器，是一個改善的處理器架構，稱為Explicitly Parallel Instruction Computing。
+
+我幫剛剛有提到 superscaler 處理器有很多組 pipelines 同時執行不同的指令，就是顯然的想要增加單一個時間可以處理的指令數量，並且盡量的使用處理器的每一個部份。
+
+傳統處理器是用硬體解碼組織指令輸入，指令會依序輸入處理器，處理器必須要預讀一些指令，然後嘗試去做organise 接下來的指令。
+
+EPICE 背後的理論就是，在更高層的地方有更多資訊可以做出比處理器更好的決定。跟處理器一樣分析組合語言的順序會流失程式工程師在原來程式碼想表達的想法。就好像直接讀莎士比亞的原著，跟簡化的版本，兩者都給你一樣的結果，但原始的版本有更多的細節，場景，讓你可以理解各個角色的情緒。
+
+所以，指令的邏輯順序排列就從處理器的工作變成編譯器的工作，所以編譯器的作者必須要更聰明的幫處理器找到最佳的指令順序。處理器就可以大大的被簡化，因為很多工作都被轉移給編譯器了。
 
 
-
-Consider an instruction stream such as that shown in [Figure 1.3.3.1, Reorder buffer example](https://www.bottomupcs.com/ch03.html#reorder\_buffer) Instruction 2 needs to wait for instruction 1 to complete fully before it can start. This means that the pipeline has to _stall_ as it waits for the value to be calculated. Similarly instructions 3 and 4 have a dependency on _r7_. However, instructions 2 and 3 have no _dependency_ on each other at all; this means they operate on completely separate registers. If we swap instructions 2 and 3 we can get a much better ordering for the pipeline since the processor can be doing useful work rather than waiting for the pipeline to complete to get the result of a previous instruction.
-
-However, when writing very low level code some instructions may require some security about how operations are ordered. We call this requirement _memory semantics_. If you require _acquire_ semantics this means that for this instruction you must ensure that the results of all previous instructions have been completed. If you require _release_ semantics you are saying that all instructions after this one must see the current result. Another even stricter semantic is a _memory barrier_ or _memory fence_ which requires that operations have been committed to memory before continuing.
-
-On some architectures these semantics are guaranteed for you by the processor, whilst on others you must specify them explicitly. Most programmers do not need to worry directly about them, although you may see the terms.
-
-#### 1.4 CISC v RISC
-
-A common way to divide computer architectures is into _Complex Instruction Set Computer_ (CISC) and _Reduced Instruction Set Computer_ (RISC).
-
-Note in the first example, we have explicitly loaded values into registers, performed an addition and stored the result value held in another register back to memory. This is an example of a RISC approach to computing -- only performing operations on values in registers and explicitly loading and storing values to and from memory.
-
-A CISC approach may be only a single instruction taking values from memory, performing the addition internally and writing the result back. This means the instruction may take many cycles, but ultimately both approaches achieve the same goal.
-
-All modern architectures would be considered RISC architectures[3](https://www.bottomupcs.com/ch03.html#the\_cpu\_s4\_para4\_footnote1-fnote).
-
-There are a number of reasons for this
-
-* Whilst RISC makes assembly programming becomes more complex, since virtually all programmers use high level languages and leave the hard work of producing assembly code to the compiler, so the other advantages outweigh this disadvantage.
-* Because the instructions in a RISC processor are much more simple, there is more space inside the chip for registers. As we know from the memory hierarchy, registers are the fastest type of memory and ultimately all instructions must be performed on values held in registers, so all other things being equal more registers leads to higher performance.
-* Since all instructions execute in the same time, pipelining is possible. We know pipelining requires streams of instructions being constantly fed into the processor, so if some instructions take a very long time and others do not, the pipeline becomes far to complex to be effective.
-
-**1.4.1 EPIC**
-
-The Itanium processor, which is used in many example through this book, is an example of a modified architecture called Explicitly Parallel Instruction Computing.
-
-We have discussed how superscaler processors have pipelines that have many instructions in flight at the same time in different parts of the processor. Obviously for this to work as well as possible instructions should be given the processor in an order that can make best use of the available elements of the CPU.
-
-Traditionally organising the incoming instruction stream has been the job of the hardware. Instructions are issued by the program in a sequential manner; the processor must look ahead and try to make decisions about how to organise the incoming instructions.
-
-The theory behind EPIC is that there is more information available at higher levels which can make these decisions better than the processor. Analysing a stream of assembly language instructions, as current processors do, loses a lot of information that the programmer may have provided in the original source code. Think of it as the difference between studying a Shakespeare play and reading the Cliff's Notes version of the same. Both give you the same result, but the original has all sorts of extra information that sets the scene and gives you insight into the characters.
-
-Thus the logic of ordering instructions can be moved from the processor to the compiler. This means that compiler writers need to be smarter to try and find the best ordering of code for the processor. The processor is also significantly simplified, since a lot of its work has been moved to the compiler.
 
