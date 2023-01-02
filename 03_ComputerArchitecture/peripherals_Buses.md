@@ -34,8 +34,31 @@
 
 
 
-**3.1.1.3 Types of interrupts**
+### **中斷的種類**
 
-There are two main ways of signalling interrupts on a line — _level_ and _edge_ triggered.
+觸發中斷的判斷分兩種，一個是電位觸發(_level_ triggered)，一個是邊緣觸發(_edge_ triggered)
 
-Level-triggered interrupts define voltage&#x20;
+電位觸發定義中斷線路的電壓是高的時候，代表有中斷存在(pending)，邊緣觸發的中斷會檢查線路電壓的變化(電壓從低到高的瞬間)。所以，在邊緣觸發中斷的情況下，一個方波輸入會產生一個中斷。
+
+剛剛講的聽起來很不知道差異在哪裡，下面這個例子可以體現他們的差異。假設你有三個設備連到同一條中斷線上，
+
+* 在電位觸發的狀態下\
+  三個設備都發出中斷訊號，才會使電位上升到中斷的有效狀態(asserted)，處理的時候也是要三個都處理完，中斷線的狀態才會成為無效狀態(un-asserted)
+* 在邊緣觸發的狀態下\
+  任何一個設備發出中斷訊號的瞬間，PIC都會偵測到變化然後請作業系統處理。However, if further pulses come in on the already asserted line from another device.(這句看不懂...)
+
+電位觸發中斷的問題是，可能需要一段蠻長的時間處理中斷。在這段時間，中斷訊號線一直維持高電位，這種情況下就沒有辦法判斷有沒有其他外部的設備發出中斷訊號。這代表，在處理中斷服務時\\
+
+
+
+
+
+电平触发中断的问题是，可能需要相当长的时间来处理设备的中断。在此期间，中断线保持较高，无法确定是否有任何其他设备在该线路上引发中断。这意味着在服务中断时可能会有相当大的不可预测的延迟。
+
+使用边缘触发的中断，可以注意到并排队等待一个长时间运行的中断，但在这种情况发生时，其他共享线路的设备仍然可以转换(从而引发中断)。然而，这带来了新的问题；如果两个设备同时中断，可能会错过其中一个中断，环境或其他干扰可能会造成一个应该忽略的_假性_中断。
+
+
+
+The issue with level-triggered interrupts is that it may require some considerable amount of time to handle an interrupt for a device. During this time, the interrupt line remains high and it is not possible to determine if any other device has raised an interrupt on the line. This means there can be considerable unpredictable latency in servicing interrupts.
+
+With edge-triggered interrupts, a long-running interrupt can be noticed and queued, but other devices sharing the line can still transition (and hence raise interrupts) while this happens. However, this introduces new problems; if two devices interrupt at the same time it may be possible to miss one of the interrupts, or environmental or other interference may create a _spurious_ interrupt which should be ignored.
