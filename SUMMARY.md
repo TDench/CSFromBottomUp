@@ -6,3 +6,4 @@
 
 * [CPU與指令](03\_ComputerArchitecture/cpu\_opcode.md)
 * [記憶體與快取](03\_ComputerArchitecture/ji-yi-ti-yu-kuai-qu.md)
+* [周邊與匯流排](03\_ComputerArchitecture/peripherals\_Buses.md)
