@@ -47,18 +47,28 @@
 * 在邊緣觸發的狀態下\
   任何一個設備發出中斷訊號的瞬間，PIC都會偵測到變化然後請作業系統處理。However, if further pulses come in on the already asserted line from another device.(這句看不懂...)
 
-電位觸發中斷的問題是，可能需要一段蠻長的時間處理中斷。在這段時間，中斷訊號線一直維持高電位，這種情況下就沒有辦法判斷有沒有其他外部的設備發出中斷訊號。這代表，在處理中斷服務時\\
+電位觸發中斷的問題是，可能需要一段蠻長的時間處理中斷。在這段時間，中斷訊號線一直維持高電位，這種情況下就沒有辦法判斷有沒有其他外部的設備發出中斷訊號。這代表，在處理中斷服務時，會產生一段不可預期的延遲(latency)
+
+使用邊緣觸發中斷，就可以注意到這些中斷，並且把中斷隊列(queue)起來。同時，其他設備可以發起電位轉換(transition)觸發中斷。但是，這個有一個新的問題，就是如果兩個設備同時發起中斷，可能會錯過其中一個中斷訊號，或是環境因素，或是訊號干擾，都會產生一個假性(_spurious_)的中斷，這些中斷都是應該被忽略的。
 
 
 
+### 非可遮蔽**中斷(Non-maskable)**
 
+對於系統來說，能在某些重要的時間範圍內不被中斷，也就是能遮蔽(_mask)_或阻止中斷是非常重要的。一般來說，中斷是可以被暫停並且晚點再處理的。但是有些特別的中斷，也就是非可遮蔽中斷(NMI)，這種中斷是不能被遮蔽，需要馬上被處理的，例如重置訊號(reset)。
 
-电平触发中断的问题是，可能需要相当长的时间来处理设备的中断。在此期间，中断线保持较高，无法确定是否有任何其他设备在该线路上引发中断。这意味着在服务中断时可能会有相当大的不可预测的延迟。
+NMI 很適合拿來實作系統看門狗(watchdog)，每當NMI被週期性的被觸發，然後設定一些標誌(flag)給作業系統處理。如果作業系統沒有看到這些NMI設定的標誌的話，作業系統就會認為這件事情沒有進展。另外一個常見的用途就是用來剖析系統，週期性的觸發NMI，去看看現在處理器是在執行哪段程式碼，隨著時間紀錄系統每一個時刻在做什麼，就可以用來分析系統效率。
 
-使用边缘触发的中断，可以注意到并排队等待一个长时间运行的中断，但在这种情况发生时，其他共享线路的设备仍然可以转换(从而引发中断)。然而，这带来了新的问题；如果两个设备同时中断，可能会错过其中一个中断，环境或其他干扰可能会造成一个应该忽略的_假性_中断。
+## **IO 空間(Space)**
 
+顯而易見地，處理器需要去跟周邊設備溝通，一般是使用 IO 操作(operations)來實現設備的溝通。最常見的IO叫做記憶體對映IO(_memory mapped IO_)，也就是每一個記憶體位置會對應到一個設備。
 
+這就代表說，你需要去跟其他設備溝通，你就是簡單的去存取特定的記憶體位置就可以了。
 
-The issue with level-triggered interrupts is that it may require some considerable amount of time to handle an interrupt for a device. During this time, the interrupt line remains high and it is not possible to determine if any other device has raised an interrupt on the line. This means there can be considerable unpredictable latency in servicing interrupts.
+## DMA
 
-With edge-triggered interrupts, a long-running interrupt can be noticed and queued, but other devices sharing the line can still transition (and hence raise interrupts) while this happens. However, this introduces new problems; if two devices interrupt at the same time it may be possible to miss one of the interrupts, or environmental or other interference may create a _spurious_ interrupt which should be ignored.
+由於周邊設備的速度遠遠的比處理器還慢，因此需要一些方法來避免CPU等待資料從設備傳過來。
+
+直接記憶體存取(Direct Memory Access, DMA)，就是一種資料直接從周邊設備傳到系統記憶體的這個行為。驅動程式可以設定設備做一個DMA傳輸資料，並且要求一塊記憶體放資料。然後開始傳輸資料，讓CPU可以去做其他工作。
+
+當設備完成這項操作之後，他會舉起中斷或是訊號，來告訴驅動程式傳完資料了。從這個時候開始，設備傳出去的資料就是可以使用的了(可以想像成硬碟裡面的檔案傳玩了才可以使用，或者是影片傳到完了才可以看這樣)
