@@ -28,8 +28,6 @@
 
 請注意，通常系統軟體不會參與這個過程，雖然說寫程式的人應該知道硬體底層做了什麼事情，才可以知道怎麼樣最佳化自己的程式效率。
 
-
-
 ### **SMP系統中的快取獨佔性**
 
 我們在記憶體與快取那小結中有討論到，有一個東西叫做 inclusive v exclusive 快取，一般來說，L1快取通陳都是具有包容性(inclusive)，這個意思就是，所有在L1的資料，也會存在L2中。在多處理器的系統來說，一個包容性的L1快取代表只有L2的快取需要做窺探(snoop)這個動作來維持快取一致性。因為L2資料的改動保證是從L1來的，這樣就可以將L1從這個複雜的窺探機制內解離出來，使得L1的設計更為簡單，也使得窺探機制變得更快。
@@ -37,8 +35,6 @@
 一般來說，現代的高端處理器(非嵌入式的處理器)，會有L1的 write-through 的機制，也會有其他階級的快去得 write-back 機制。這個有很多原因，例如，這種等級的處理器的 L2 快取幾乎都是獨立且位於晶片上面，而且大部分都速度很快，所以 L1 直寫的時間不是很長。除此之外，因為L1的大小很小，將來不太可能去讀L1上面的資料，去讀L1上的資料又有可能造成資料汙染，浪費L1資源(因為要維持快取一致性)，一個L1的直寫L1不需要曲可這些東西，因此可以將一致性的邏輯傳給L2去做處理(就跟剛剛說的一樣，已經在快取一致性那邊做處理)
 
 Further, since L1 sizes are small, pools of written data unlikely to be read in the future could cause pollution of the limited L1 resource. Additionally, a write-through L1 does not have to be concerned if it has outstanding dirty data, hence can pass the extra coherency logic to the L2 (which, as we mentioned, already has a larger part to play in cache coherency).這段看不懂。。
-
-
 
 ### **超執行緒 Hyperthreading**
 
@@ -58,4 +54,52 @@ Further, since L1 sizes are small, pools of written data unlikely to be read in 
 
 
 
-``
+## 群集 Clusters
+
+很多應用程式需要更多的處理器幫忙處理，這個數量大於SMP系統很多。有一種方法可以擴張處理器的數量，就是群集(Clusters) 的概念。
+
+群集就是簡單的將很多的電腦連結在一起。在硬體的層級上來看，每台電腦並不知道其他電腦在做什麼，將各台電腦連接在一起的這個任務是由軟體達成。
+
+就像是 MPI 之類的軟體可以讓程式工程師藉由編寫一些軟體把部分的電腦移除(farm out)。舉個例子，假設有一個迴圈要執行上千次的獨立指令，而且這些指令迭代不會影響其他的迭代。假設群集之中有四台電腦，就把它分配給四台電腦，每個電腦分別計算250次這樣。
+
+電腦之間的連結方法有很多種，有可能像一般網路一樣慢，或可能跟專用線路(Infiniband)一樣快。無論連結的方式如何，記憶體的階層又會往下產生一階，會多一個比RAM更慢的階層。所以當群集裡面的電腦要讀取其他電腦的記憶體的時候，就會表現得不好，因為有這種需求的時候，軟體就需要發出一個請求，請求其他電腦把他的資料送一份過來，然後經由很慢的線路傳送過來，然後載入到到自己的記憶體，然後處理器才可以開始工作。
+
+但是，許多應用程式並不需要這種電腦之前的互相複製，傳送資料的功能。一個大型的例子就是 SETI@Home ，這個專案裡面會有來自於望遠鏡的無線電資料，希望可以拿來找到外星生命。每一台電腦會被分配到一小段資料去做分析，然後回傳自己的分析結果就可以。所以這個專案實際上就是一個非常大的群集
+
+另外一個運用就是拿來渲染影像(rendering)，尤其是電影裡面的特效。每一台電腦都負責一幀，分別處理火焰，紋理渲染，光暈渲染之類的特效，然後把他們組合在一起，就可以變成我們看到的驚人特效。因為每一幀的畫面都是靜態的，電腦有了這個輸入之後，就不需要其他的資訊了。所以可以分配給很多電腦計算之後再回傳即可。例如魔戒(Lord of the Rings)就是用Linux的巨大群集做出來的特效。
+
+
+
+## 非統一記憶體存取架構 (Non-uniform memory access)
+
+非統一記憶體存取架構(Non-uniform memory access, NUMA)，幾乎和上面提到的群集的概念相反。在群集系統中就像是連結了很多節點，且連結成本非常的特殊(昂貴)，每個節點的硬體互相不知道對方的訊息。在NUMA架構中，軟體沒有太多對於系統的認識，大部分都是由硬體將結點連接在一起。
+
+這個NUMA這個專有名詞來自於 CPU 跟 RAM 在不同的物理位置，所以資料傳輸需要從一個有點距離的地方傳過來，顯然需要再多花一些時間。跟單個處理器或SMP系統不同，單處理器或SMP系統的記憶體是直連到RAM，而且只需要花一個定量(constant)的時間存取
+
+### **NUMA 系統架構**
+
+由於系統中有很多節點要互相溝通，所以把這些節點之間的距離最小化就是很重要的議題了。很明顯的，最簡單直接的方法就是把每個節點都連在一起，就可以最大程度的減少一個節點到另外一個節點的距離。但當數量變成幾百幾千的時候，這種解法的就顯得不太實際了。如果你高中數學還沒有忘記的話，n個點任意連接在一起的組合有 `n!/2*(n-2)!` 這樣。
+
+為了要解決這個指數成長的問題]，我們會採用另外一種布局，權衡距離跟所需要連結的節點數量。現代常見的布局就是超立方體(hypercube)架構。
+
+這個超立方架構有嚴謹的數學定義(超過我們討論的範圍)，但是簡單來說立方體就是一個3維的立體構造，超立方體就是大概是4維的感覺。
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>超立方體的示意圖</p></figcaption></figure>
+
+我們可以看到上面這張圖，感將像是立方體
+
+Above we can see the outer cube contains four 8 nodes. The maximum number of paths required for any node to talk to another node is 3. When another cube is placed inside this cube, we now have double the number of processors but the maximum path cost has only increased to 4. This means as the number of processors grow by 2n the maximum path cost grows only linearly.
+
+上面我们可以看到外部多维数据集包含四个 8 个节点。 任何节点与另一个节点通信所需的最大路径数为 3.当另一个多维数据集放置在此多维数据集内时，我们现在有两倍的处理器数，但最大路径成本仅增加到 4.这意味着数量 处理器增长 2n，最大路径成本只
+
+### **Cache Coherency**
+
+Cache coherency can still be maintained in a NUMA system (this is referred to as a cache-coherent NUMA system, or ccNUMA). As we mentioned, the broadcast based scheme used to keep the processor caches coherent in an SMP system does not scale to hundreds or even thousands of processors in a large NUMA system. One common scheme for cache coherency in a NUMA system is referred to as a _directory based model_. In this model processors in the system communicate to special cache directory hardware. The directory hardware maintains a consistent picture to each processor; this abstraction hides the working of the NUMA system from the processor.
+
+The Censier and Feautrier directory based scheme maintains a central directory where each memory block has a flag bit known as the _valid bit_ for each processor and a single _dirty_ bit. When a processor reads the memory into its cache, the directory sets the valid bit for that processor.
+
+When a processor wishes to write to the cache line the directory needs to set the dirty bit for the memory block. This involves sending an invalidate message to those processors who are using the cache line (and only those processors whose flag are set; avoiding broadcast traffic).
+
+After this should any other processor try to read the memory block the directory will find the dirty bit set. The directory will need to get the updated cache line from the processor with the valid bit currently set, write the dirty data back to main memory and then provide that data back to the requesting processor, setting the valid bit for the requesting processor in the process. Note that this is transparent to the requesting processor and the directory may need to get that data from somewhere very close or somewhere very far away.
+
+Obviously having thousands of processors communicating to a single directory does also not scale well. Extensions to the scheme involve having a hierarchy of directories that communicate between each other using a separate protocol. The directories can use a more general purpose communications network to talk between each other, rather than a CPU bus, allowing scaling to much larger systems.
