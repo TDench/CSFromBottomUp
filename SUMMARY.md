@@ -11,5 +11,5 @@
 
 ## 第四章，作業系統 <a href="#04_OperatingSystem" id="04_OperatingSystem"></a>
 
-* [作業系統簡介](04\_OperatingSystem/operating\_system.md)
+* [作業系統簡介](04\_OperatingSystem/os\_intro.md)
 * [作業系統架構](04\_OperatingSystem/os\_organisation.md)
