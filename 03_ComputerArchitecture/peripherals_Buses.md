@@ -90,7 +90,7 @@ NMI 很適合拿來實作系統看門狗(watchdog)，每當NMI被週期性的被
 
 很多端點(end-points)組成一個介面(interfaces)，很多介面組成一個設定(_configurations_)，大部分的設備都只有一個設定
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>UHCI控制器的簡介。</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption><p>UHCI控制器的簡介。</p></figcaption></figure>
 
 
 

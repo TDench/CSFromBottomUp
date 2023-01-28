@@ -1,6 +1,6 @@
 # 記憶體與快取
 
-## 2.1 記憶體架構
+## 記憶體架構
 
 CPU 只能直接存處理器晶片上面的快取記憶體(cache)存取指令與數據。快取的資料是從主記憶體(main system memory, 也就是 Random Access Memory, RAM)讀取出來的。但是RAM上面的資料會因為斷電而消失，所以資料必須儲存在更永久的除存裝置上，如硬碟等。
 
@@ -10,32 +10,37 @@ CPU 只能直接存處理器晶片上面的快取記憶體(cache)存取指令與
 
 記憶體的階層關係表格&#x20;
 
-| 存取速度 | 記憶體   | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ---- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 很快   | Cache | 快去記憶體是鑲嵌在CPU晶片中ㄉㄜ記憶體，非常的快，基本上只需要一個處理器時脈的時間就可以存取。但因為是直接鑲嵌在CPU的晶片上，所以限制了快取的大小。事實上，還有快取很有分幾個階層，叫做L1,L2,L3 每層的速度都不同                                                                                                                                                                                                                                                                                                                                                  |
-|      | RAM   | <p>所有指令跟儲存的記憶體位置都是從RAM存取的，雖然RAM已經很快了，但比起CPU的速度，還是需要等一段時間，這段時間被叫做latency。RAM的資料除存在一個分開的，獨立安裝在主機板上的</p><p>某個位置，這意味著他</p><p>All instructions and storage addresses for the processor must come from RAM. Although RAM is very fast, there is still some significant time taken for the CPU to access it (this is termed <em>latency</em>). RAM is stored in separate, dedicated chips attached to the motherboard, meaning it is much larger than cache memory.</p> |
-| 很慢   | Disk  | We are all familiar with software arriving on a floppy disk or CDROM, and saving our files to the hard disk. We are also familiar with the long time a program can take to load from the hard disk -- having physical mechanisms such as spinning disks and moving heads means disks are the slowest form of storage. But they are also by far the largest form of storage.                                                                                      |
+| 存取速度 | 記憶體   | 描述                                                                                                                                  |
+| ---- | ----- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 很快   | Cache | 快去記憶體是鑲嵌在CPU晶片中ㄉㄜ記憶體，非常的快，基本上只需要一個處理器時脈的時間就可以存取。但因為是直接鑲嵌在CPU的晶片上，所以限制了快取的大小。事實上，還有快取很有分幾個階層，叫做L1,L2,L3 每層的速度都不同                     |
+|      | RAM   | <p>所有指令跟儲存的記憶體位置都是從RAM存取的，雖然RAM已經很快了，但比起CPU的速度，還是需要等一段時間，這段時間被叫做latency。RAM的資料除存在一個分開的，獨立安裝在主機板上的</p><p>某個位置，這意味著他有比快取更大的記憶體空間。</p> |
+| 很慢   | Disk  | 我們在硬碟上儲存我們ㄒ需要的檔案，我們有很習慣打開檔案需要花一段時間讀取。具有選轉磁碟盤和移動磁碟盤的讀取頭這種物理的機制讓硬碟變成最慢的儲存形式。但他是目前最大的儲存空間                                              |
 
-The important point to know about the memory hierarchy is the trade offs between speed and size — the faster the memory the smaller it is. Of course, if you can find a way to change this equation, you'll end up a billionaire!
+了解記憶體的架構，最重要的一點就是儲存大小跟速度之間的權衡問題。越快的記憶體容量越少。但，如果你可以找到一個顛覆此概念的儲存媒介，你就會成為超級有錢人。
 
-The reason caches are effective is because computer code generally exhibits two forms of locality
+快取這麼小，卻有用的原因是因為電腦的程式通常都具有兩種性質
 
-1. _Spatial_ locality suggests that data within blocks is likely to be accessed together.
-2. _Temporal_ locality suggests that data that was used recently will likely be used again shortly.
+1. 空間局部性(_Spatial_ locality)，一個單位(blocks)的數據很有可能會被一起存取
+2. 時間局部性(_Temporal_ locality)，最近使用過的資料高機率會再被使用一次
 
-This means that benefits are gained by implementing as much quickly accessible memory (temporal) storing small blocks of relevant information (spatial) as practically possible.
+這代表，寫程式的時候盡量將相關的訊息儲存在同一塊記憶體空間範圍，或是將常使用的程式放在相近的地方都可以增進執行的效率
 
-#### 2.2 Cache in depth
+## 快取細節
 
-Cache is one of the most important elements of the CPU architecture. To write efficient code developers need to have an understanding of how the cache in their systems works.
+快取是CPU架構中重要的元素。想要寫出有效率的程式，程式工程師需要了解處理器架構的快取機制。
 
-The cache is a very fast copy of the slower main system memory. Cache is much smaller than main memories because it is included inside the processor chip alongside the registers and processor logic. This is prime real estate in computing terms, and there are both economic and physical limits to its maximum size. As manufacturers find more and more ways to cram more and more transistors onto a chip cache sizes grow considerably, but even the largest caches are tens of megabytes, rather than the gigabytes of main memory or terabytes of hard disk otherwise common.
+快取是用來複製主記憶體的資料。但快取的記憶體容量比主記憶體小很多，因為快取是處理器晶片裡面硬體結構，他跟暫存器跟處理器的邏輯放在一起。在處理器製造來說，記憶體就代表成本，所以不會實做很大的快取處理器，這個是物理上，也是經濟上的限制。處理器製造商想盡辦法在塞更多的電晶體在同一個大小的晶片上，晶片的大小變得很大，但即使這樣，最大的快取記憶體也是 MB 等級，不像RAM可以作到 GB，硬碟可以做到 TB。（按編：目前i9-13900K 快取36MB）
 
-The cache is made up of small chunks of mirrored main memory. The size of these chunks is called the _line size_, and is typically something like 32 or 64 bytes. When talking about cache, it is very common to talk about the line size, or a cache line, which refers to one chunk of mirrored main memory. The cache can only load and store memory in sizes a multiple of a cache line.
+快取是為了要複製整個主記憶體的資料，他跟主記憶體有一些映射關係，結構上有所謂的快取行 (line)  ，資料大小通常是 32 或是 64bytes ，快取一次就是存取一個快取行的資料大小。
 
-Caches have their own hierarchy, commonly termed L1, L2 and L3. L1 cache is the fastest and smallest; L2 is bigger and slower, and L3 more so.
+* 這邊可以參考「每位程式開發者都該有的記憶體知識」\
+  &#x20;[https://github.com/sysprog21/cpumemory-zhtw](https://github.com/sysprog21/cpumemory-zhtw)
 
-L1 caches are generally further split into instruction caches and data, known as the "Harvard Architecture" after the relay based Harvard Mark-1 computer which introduced it. Split caches help to reduce pipeline bottlenecks as earlier pipeline stages tend to reference the instruction cache and later stages the data cache. Apart from reducing contention for a shared resource, providing separate caches for instructions also allows for alternate implementations which may take advantage of the nature of instruction streaming; they are read-only so do not need expensive on-chip features such as multi-porting, nor need to handle handle sub-block reads because the instruction stream generally uses more regular sized accesses.
+快取有自己的階層架構，通常稱為L1、L2和L3。L1快取最小最快，L3最大最慢。
+
+如果L1快取分別儲存指令跟資料，那就是被稱為「哈佛架構」，因為作者叫做Harvard Mark。把快取拆成兩塊可以增進速度，因為pipeline前期都是指令，後期比較多是資料快取。除了可以減少資料與指令競爭共享資源以外，由於指令是唯讀資料，且有固定的指令大小，所以不需要處理一些讀寫相關的同步問題，或是一次讀很多快取的問題。
+
+
 
 ![](https://www.bottomupcs.com/chapter02/figures/sets.svg)Figure 2.2.1 Cache Associativity
 

@@ -42,7 +42,7 @@
 
 在CPU裡面有很多不同的部分在執行剛剛說到的每一個步驟，通常這些步驟都可以被獨立的執行。這就好像是一條工廠生產線一樣，有很多站點。每一個步驟都有一個特定的任務要執行，當這個任務執行完畢的時候，就會把結果傳遞給下一個站點，然後接收上一站點的新的工作。
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>這張圖是CPU的內部構造，這張圖簡介了現代處理器裡面一些主要的原件，裡面有解碼(decode)，算術運算(ALC)、浮點數運算(FPU)、快取記憶體(cache)等，CPU可以直接存取記憶體(RAM)，並且接受指令的輸入。</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>這張圖是CPU的內部構造，這張圖簡介了現代處理器裡面一些主要的原件，裡面有解碼(decode)，算術運算(ALC)、浮點數運算(FPU)、快取記憶體(cache)等，CPU可以直接存取記憶體(RAM)，並且接受指令的輸入。</p></figcaption></figure>
 
 
 
