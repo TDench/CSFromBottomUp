@@ -2,7 +2,7 @@
 
 作業系統的架構大概長的像下面張圖這樣
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>這是一個作業系統的概念圖，從最上面開始看是使用者的區域，會有很多任務，這些任務的先後順序跟資源分配都是由系統核心（kernel）完成。核心會直接或透過驅動(Driver)跟硬體溝通，完成使用者想要達成的任務。可以把核心想成一種大型的硬體API</p></figcaption></figure>
 
 ## 作業系統核心 (Kernel)
 
@@ -16,47 +16,61 @@
 這段應該是在說核心有特權，安全性跟例外處理是跟一般process完全不同的。
 {% endhint %}
 
-單一核心(**Monolithic)  (Microkernels)**
+## 單一核心(**Monolithic)?微核心(Microkernels)?**
 
-One debate that is often comes up surrounding operating systems is whether the kernel should be a _microkernel_ or _monolithic_.
+這個是一個長久以來的爭執，到底是單一核心好，還是微核心好？
 
-The monolithic approach is the most common, as taken by most common Unixes (such as Linux). In this model the core privileged kernel is large, containing hardware drivers, file system accesses controls, permissions checking and services such as Network File System (NFS).
+單一核心是最常見的，也是被Unix系列(例如Linux)採用的方法。在單一核心的架構下，核心的特權是很大的，包含硬體的驅動，檔案系統，權限管理，網路檔案系統( Network File System, NFS)等等的服務都算在核心的範圍。
 
-Since the kernel is always privileged, if any part of it crashes the whole system has the potential to come to a halt. If one driver has a bug, it can overwrite any memory in the system with no problems, ultimately causing the system to crash.
+單一核心的缺點就是，由於核心擁有特權，掌控整台電腦，核心的任何一個部份當機都會使的整個系統停擺，如果驅動程式有bug，他就能夠成功覆蓋系統中隨便一個位置的記憶體內容，導致系統當機。
 
-A microkernel architecture tries to minimise this possibility by making the privileged part of the kernel as small as possible. This means that most of the system runs as unprivileged programs, limiting the harm that any one crashing component can influence. For example, drivers for hardware can run in separate processes, so if one goes astray it can not overwrite any memory but that allocated to it.
+所以微核心的架構就是為了最小化這種可能性，所以試著將核心做的事情越少越好。也就是說，大部分的系統都是執行非特權的程式。從而限制任意一個核心的部份都會造成整台電腦當機的可能性。例如，硬體驅動程式是一個獨立的行程(process），當這個行程發生錯誤的時候，除了他自己當初被分配道的那塊記憶體空間以外，他不能覆蓋其他行程的記憶體位置。
 
-Whilst this sounds like the most obvious idea, the problem comes back two main issues
+那微核心聽起來厲害多了，那還有什麼好吵的？大家主要是在吵
 
-Whilst this sounds like the most obvious idea, the problem comes back two main issues
+1. 效能會下降，因為要常常切換核心模式跟使用者模式。
+2. 對於撰寫程式的人來說，這個架構比較複雜
 
-1. Performance is decreased. Talking between many different components can decrease performance.
-2. It is slightly more difficult for the programmer.
+這兩個爭議都是來至於微核心想要把功能模組化的因素，所以各個模組(components)需要互相傳遞訊訊息，所以會效能下降，寫程式的也會覺得比較複雜。通常這種溝通叫做[行程間通訊](https://zh.wikipedia.org/zh-tw/%E8%A1%8C%E7%A8%8B%E9%96%93%E9%80%9A%E8%A8%8A) (inter-process communication, IPC)。各個模組通訊是用一種離散的方是傳遞，也就是訊息會先綁成一個單位，然後送給其他模組，然後解碼這段訊息，然後執行動作，然後重新綁成另外一個單位，然後回傳給其他的模組這樣。
 
-Both of these criticisms come because to keep separation between components most microkernels are implemented with a _message passing_ based system, commonly referred to as _inter-process communication_ or IPC. Communicating between individual components happens via discrete messages which must be bundled up, sent to the other component, unbundled, operated upon, re-bundled up and sent back, and then unbundled again to get the result.
+這樣子的話，一個很簡單的指令會因為要呼叫外部的模組而產生很多步驟，很明顯的，一個通訊的請求很有可能發起更多的通訊請求，那速度就會降慢很多倍。早期微核心系統因為這種沒效率的訊息傳遞系統稿的效率很差，傳遞資訊的概念對寫程式的人來說又有點難。只是更加多一些的系統保護，犧牲了效能讓早期的微核心系統變得很不流行。
 
-This is a lot of steps for what might be a fairly simple request from a foreign component. Obviously one request might make the other component do more requests of even more components, and the problem can multiply. Slow message passing implementations were largely responsible for the poor performance of early microkernel systems, and the concepts of passing messages are slightly harder for programmers to program for. The enhanced protection from having components run separately was not sufficient to overcome these hurdles in early microkernel systems, so they fell out of fashion.
+然後在單一核心的系統之中，模組之間的調用就像是一般的函式呼叫。就跟一般軟體的理解一樣。
 
-In a monolithic kernel, calls between components are simple function calls, as all programmers are familiar with.
+至於那一個才是比較好的架構，學術上跟非學術上有很多爭論，希望你學完了這些跟作業系統相關的課程之後，你會有你自己的看法。
 
-There is no definitive answer as to which is the best organisation, and it has started many arguments in both academic and non-academic circles. Hopefully as you learn more about operating systems you will be able to make up your own mind!
+关于哪个是最好的组织，没有明确的答案，它在学术界和非学术界都引发了许多争论。希望当您了解有关操作系统的更多信息时，您将能够自己决定！
 
-**2.1.1.1 Modules**
+### **核心模組 Modules**
 
-The Linux kernel implements a module system, where drivers can be loaded into the running kernel "on the fly" as they are required. This is good in that drivers, which make up a large part of operating system code, are not loaded for devices that are not present in the system. Someone who wants to make the most generic kernel possible (i.e. runs on lots of different hardware, such as RedHat or Debian) can include most drivers as modules which are only loaded if the system it is running on has the hardware available.
+Linux 核心實做了一個模組系統，也就是說，硬體驅動在需要的時候再動態的載入核心就可以了。這個就代表，整個核心超級一大包的的程式碼，涵蓋各式各樣不同的驅動程式碼，並不會全部都載入你的系統，只有你擁有這個硬體，才會載入這段驅動程式。這樣讓某些作業系統開發的人(如RedHat, Debian)可以將大多數的驅動程式包裝成一個個的模組，讓他們的程式可以適應很多不同的硬體。
 
-However, the modules are loaded directly in the privileged kernel and operate at the same privilege level as the rest of the kernel, so the system is still considered a monolithic kernel.
+但是，這些模組都是直接載入核心，也就是擁有跟核心一樣的特權。所以這種系統一樣被視為是單一核心。
 
-**2.1.2 Virtualisation**
+{% hint style="info" %}
+翻譯上 module 跟 component 都筆者都將其翻譯成模組，語意上沒有區分
 
-Closely related to kernel is the concept of virtualisation of hardware. Modern computers are very powerful, and often it is useful to not think of them as one whole system but split a single physical computer up into separate "virtual" machines. Each of these virtual machines looks for all intents and purposes as a completely separate machine, although physically they are all in the same box, in the same place.
+[https://stackoverflow.com/questions/2702816/module-vs-component-design](https://stackoverflow.com/questions/2702816/module-vs-component-design)
+{% endhint %}
+
+## **虛擬化 (Virtualisation)**
+
+另外一個跟核心相關的概念就是硬體的虛擬化。現代的電腦效能非常的好，所以通常為把物理上的一台電腦，拆分成很多虛擬的電腦，每一個虛擬電腦都互相不影響，可以獨立完成任務，但實際上都是同一台電腦。
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-\
-This can be organised in many different ways. In the simplest case, a small _virtual machine monitor_ can run directly on the hardware and provide an interface to the guest operating systems running on top. This VMM is often often called a hypervisor (from the word "supervisor")[1](https://www.bottomupcs.com/ch04s02.html#organisation\_of\_os\_s1\_s2\_para2\_footnote1-fnote). In fact, the operating system on top may have no idea that the hypervisor is even there at all, as the hypervisor presents what appears to be a complete system. It intercepts operations between the guest operating system and hardware and only presents a subset of the system resources to each.
+這個可以有很多種虛擬化的方法，最簡單的例子就是，虛擬器監視器(_virtual machine monitor, VMM, hypervisor_)，這個VMM會在直接運行在硬體上面，然後提供界面給客戶端的作業系統。客戶端的作業系統根本不知道有沒有VMM的存在，因為VMM長的就像一個硬體界面，他會攔截客戶端作業系統傳給硬體的訊息，然後動點手腳，或使只分配一部分的硬體資源給這個客戶端系統這樣。
 
-This is often used on large machines (with many CPUs and much RAM) to implement _partitioning_. This means the machine can be split up into smaller virtual machines. Often you can allocate more resources to running systems on the fly, as requirements dictate. The hypervisors on many large IBM machines are actually quite complicated affairs, with many millions of lines of code. It provides a multitude of system management services.
+這種作法通常用於大型的電腦(那種有很多CPU跟記憶體的那種電腦)，這樣做可以實現分割(partitioning)，也就是把機台拆分成很多小的虛擬機，當需要比較多計算量的時候，VMM可以動態的分配更多資源給虛擬機。許多大型的IBM伺服器都擁有這種功能，這種功能其實很複雜(上百萬行程式碼)，提供大量的伺服器管理服務。\
+
+
+
+
+
+
+另一个选择是让操作系统知道底层管理程序，并通过它请求系统资源。由于其中途性质，这有时被称为半虚拟化。这与 Xen 系统早期版本的工作方式类似，是一种折衷的解决方案。它有望提供更好的性能，因为操作系统在需要时明确要求来自管理程序的系统资源，而不是虚拟机管理程序必须动态地解决问题
+
+
 
 Another option is to have the operating system be aware of the underlying hypervisor, and request system resources through it. This is sometimes referred to as _paravirtualisation_ due to its halfway nature. This is similar to the way early versions of the Xen system work and is a compromise solution. It hopefully provides better performance since the operating system is explicitly asking for system resources from the hypervisor when required, rather than the hypervisor having to work things out dynamically.
 
