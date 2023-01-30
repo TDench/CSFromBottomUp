@@ -61,18 +61,21 @@ Linux 核心實做了一個模組系統，也就是說，硬體驅動在需要�
 
 這個可以有很多種虛擬化的方法，最簡單的例子就是，虛擬器監視器(_virtual machine monitor, VMM, hypervisor_)，這個VMM會在直接運行在硬體上面，然後提供界面給客戶端的作業系統。客戶端的作業系統根本不知道有沒有VMM的存在，因為VMM長的就像一個硬體界面，他會攔截客戶端作業系統傳給硬體的訊息，然後動點手腳，或使只分配一部分的硬體資源給這個客戶端系統這樣。
 
-這種作法通常用於大型的電腦(那種有很多CPU跟記憶體的那種電腦)，這樣做可以實現分割(partitioning)，也就是把機台拆分成很多小的虛擬機，當需要比較多計算量的時候，VMM可以動態的分配更多資源給虛擬機。許多大型的IBM伺服器都擁有這種功能，這種功能其實很複雜(上百萬行程式碼)，提供大量的伺服器管理服務。\
+這種作法通常用於大型的電腦(那種有很多CPU跟記憶體的那種電腦)，這樣做可以實現分割(partitioning)，也就是把機台拆分成很多小的虛擬機，當需要比較多計算量的時候，VMM可以動態的分配更多資源給虛擬機。許多大型的IBM伺服器都擁有這種功能，這種功能其實很複雜(上百萬行程式碼)，提供大量的伺服器管理服務。
+
+另外一種作法就是讓作業系統知道vmm的存在，然後透過vmm存取硬體資源。這種方法被稱為半虛擬化(_paravirtualisation)，_早期Xen系統就是用這種方式作為一個折衷的方案。希望這樣可以提供更好的效能，因為作業系統需要明確的要求vmm給予系統支援，而不是由 vmm 動態的解決分配資源的問題。
+
+最後，你可能會遇到這樣的情況：
 
 
 
+最后，您可能遇到这样的情况：在现有操作系统之上运行的应用程序提供了可以运行普通操作系统的虚拟化系统（包括 CPU，内存，BIOS，磁盘等）。应用程序通过现有操作系统将请求转换为底层硬件。这类似于 VMWare 的工作方式。这种方法有很多开销，因为应用程序进程必须模拟整个系统并将所有内容转换为来自底层操作系统的请求。但是，这使您可以一起模拟完全不同的体系结构，因为您可以将指令从一种处理器类型动态转换为另一种处理器类型（因为 Rosetta 系统使用从 PowerPC 处理器转移到基于 Intel 的处理器的 Apple 软件）。
 
+在使用任何这些虚拟化技术时，性能是主要问题，因为曾经直接在硬件上进行快速操作需要通过抽象层来实现。
 
+英特尔已经讨论了即将推出最新处理器的虚拟化硬件支持。这些扩展通过为可能需要介入虚拟机监视器的操作引发特殊异常来工作。因此，处理器看起来与运行在其上的应用程序的非虚拟化处理器相同，但是当该应用程序请求可能在其他客户机操作系统之间共享的资源时，可以调用虚拟机监视器。
 
-另一个选择是让操作系统知道底层管理程序，并通过它请求系统资源。由于其中途性质，这有时被称为半虚拟化。这与 Xen 系统早期版本的工作方式类似，是一种折衷的解决方案。它有望提供更好的性能，因为操作系统在需要时明确要求来自管理程序的系统资源，而不是虚拟机管理程序必须动态地解决问题
-
-
-
-Another option is to have the operating system be aware of the underlying hypervisor, and request system resources through it. This is sometimes referred to as _paravirtualisation_ due to its halfway nature. This is similar to the way early versions of the Xen system work and is a compromise solution. It hopefully provides better performance since the operating system is explicitly asking for system resources from the hypervisor when required, rather than the hypervisor having to work things out dynamically.
+这提供了卓越的性能，因为虚拟机监视器不需要监视每个操作以查看它是否安全，但可以等到处理器通知发生了不安全的事情。
 
 Finally, you may have a situation where an application running on top of the existing operating system presents a virtualised system (including CPU, memory, BIOS, disk, etc) which a plain operating system can run on. The application converts the requests to hardware through to the underlying hardware via the existing operating system. This is similar to how VMWare works. This approach has many overheads, as the application process has to emulate an entire system and convert everything to requests from the underlying operating system. However, this lets you emulate an entirely different architecture all together, as you can dynamically translate the instructions from one processor type to another (as the Rosetta system does with Apple software which moved from the PowerPC processor to Intel based processors).
 
