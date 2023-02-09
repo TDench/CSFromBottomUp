@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.8b -->
+<!-- CreationDate: 2022-08-07 20:33:01 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="733pt" height="359pt"
+	viewBox="1608 843 11634 5694">
+<g fill="none">
+<!-- Line -->
+<rect x="5265" y="1350" width="360" height="405" fill="#e1e1e1"
+	stroke="#c3c3c3" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="2610" width="360" height="3195" fill="#e1e1e1"
+	stroke="#c3c3c3" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="9045" y="2610" width="3420" height="3150" id="p0"/>
+<pattern id="tile0" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#ff0000" fill="none">
+<path d="M -7,37 73,-3 M 61,70 141,30"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p0" fill="#ffffff"/>
+<use xlink:href="#p0" fill="url(#tile0)"
+	stroke="#ff0000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="1755" y="1350" width="3510" height="405" id="p1"/>
+<pattern id="tile1" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#ff0000" fill="none">
+<path d="M -7,37 73,-3 M 61,70 141,30"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p1" fill="#ffffff"/>
+<use xlink:href="#p1" fill="url(#tile1)"
+	stroke="#ff0000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="1755" y="2610" width="3510" height="405" id="p2"/>
+<pattern id="tile2" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#e1e1e1" fill="none">
+<path d="M -7,37 73,-3 M 61,70 141,30"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p2" fill="#ffffff"/>
+<use xlink:href="#p2" fill="url(#tile2)"
+	stroke="#e1e1e1" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="1755" y="5400" width="3510" height="405" id="p3"/>
+<pattern id="tile3" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#e1e1e1" fill="none">
+<path d="M -7,37 73,-3 M 61,70 141,30"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p3" fill="#ffffff"/>
+<use xlink:href="#p3" fill="url(#tile3)"
+	stroke="#e1e1e1" stroke-width="8px"/>
+<!-- Line -->
+<rect x="9045" y="4635" width="3420" height="1170" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="9045" y="2610" width="3420" height="1170" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="1755" y="1350" width="6885" height="405"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="9270" y="1350" fill="#000000" font-family="Times" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">Implementations define the most significant</text>
+<!-- Text -->
+<text xml:space="preserve" x="9270" y="1575" fill="#000000" font-family="Times" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">implemented bit, which must be</text>
+<!-- Text -->
+<text xml:space="preserve" x="9270" y="1800" fill="#000000" font-family="Times" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">sign-extended to create a full address</text>
+<!-- Text -->
+<text xml:space="preserve" x="1980" y="3780" fill="#000000" font-family="Times" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">This has the effect of partitioning</text>
+<!-- Text -->
+<text xml:space="preserve" x="1980" y="4005" fill="#000000" font-family="Times" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">the total address space into an</text>
+<!-- Text -->
+<text xml:space="preserve" x="1980" y="4230" fill="#000000" font-family="Times" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">upper and lower portion, with </text>
+<!-- Text -->
+<text xml:space="preserve" x="1980" y="4455" fill="#000000" font-family="Times" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">addresses inbetween considered</text>
+<!-- Text -->
+<text xml:space="preserve" x="1980" y="4680" fill="#000000" font-family="Times" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">invalid</text>
+<!-- Line -->
+<rect x="1755" y="2610" width="6885" height="405"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="1755" y="5400" width="6885" height="405"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 1608,843 H 13242 V 6537 H 1608 z
+		M 5393,6035 5498,6035 5452,5888 5438,5888z"/>
+</clipPath>
+</defs>
+<polyline points=" 5445,6210 5445,5895" clip-path="url(#cp0)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 5445,5895 -->
+<polygon points=" 5498,6035 5445,5915 5393,6035 5498,6035"
+	stroke="#000000" stroke-width="15px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<polyline points=" 8640,2610 9045,2610 9045,3780 8640,3015 8640,2655" fill="#d2d2d2"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8640,5803 9045,5803 9045,4633 8640,5398 8640,5758" fill="#d2d2d2"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 1755,1890 5265,1890"
+	stroke="#ff0000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 5265,1890 5625,1890"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 1755,1215 8640,1215"
+	stroke="#00008f" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 12780,5805 12780,2610"
+	stroke="#00008f" stroke-width="8px"/>
+<!-- Line -->
+<rect x="1620" y="2430" width="11610" height="4095" rx="105"
+	stroke="#b0a193" stroke-width="8px"/>
+<!-- Line -->
+<rect x="1620" y="855" width="11610" height="1440" rx="105"
+	stroke="#b0a193" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="3060" y="5670" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">0000000...</text>
+<!-- Text -->
+<text xml:space="preserve" x="3150" y="2880" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">1111111...</text>
+<!-- Text -->
+<text xml:space="preserve" x="5400" y="2880" fill="#000000" font-family="Courier" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="5355" y="5670" fill="#000000" font-family="Courier" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="3825" y="6390" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">All higher bits must be the same as this bit</text>
+<!-- Text -->
+<text xml:space="preserve" x="10305" y="5265" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">LOWER</text>
+<!-- Text -->
+<text xml:space="preserve" x="10350" y="3285" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">UPPER</text>
+<!-- Text -->
+<text xml:space="preserve" x="2655" y="2115" fill="#ff0000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Unimplemented bits</text>
+<!-- Text -->
+<text xml:space="preserve" x="4500" y="2115" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Most significant implemented bit</text>
+<!-- Text -->
+<text xml:space="preserve" x="4680" y="1125" fill="#00008f" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Full address</text>
+<!-- Text -->
+<g transform="translate(12870,3555) rotate(-270)" >
+<text xml:space="preserve" x="0" y="0" fill="#00008f" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Total address space</text>
+</g></g>
+</svg>

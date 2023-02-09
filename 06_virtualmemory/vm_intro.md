@@ -30,11 +30,21 @@
 
 雖然 64bit 處理器有 64bit 寬的暫存器，但是電腦不會實作這麼大的地址空間，因為現實中也沒有這麼大的實體記憶體可以給處理器存取。
 
-所以大部分的處理器架構都會定義一個未實做(_unimplemented_)的地址空間，在x86-64 跟 Itanium 這兩個架構之下，
+所以大部分的處理器架構都會定義一個未實做(_unimplemented_)的地址空間，在x86-64 跟 Itanium 這兩個架構之下，都是定義最高有效位(MSB)必須是 sign-extended 才會是有效的地址。這就造成了有效的地址都被分成上下兩個部分，中間的部分都被當作不合法的地址，就跟下面這張圖想要表示的一樣。有效的地址被叫做 _canonical addresses，_無效的地址被叫做 _non_-canonical
 
+<figure><img src="../.gitbook/assets/canonical.svg" alt=""><figcaption><p>這張圖再說明x86的架構下，地址的表示。MSB以上的叫做未實作(<em>unimplemented</em>)，未實作的bit都是用 sign-extended的方式填充。這就會造成要麻左手邊都是1，要麻左手邊都是0，這樣就恰恰好把地址空間切成上下兩個部分，中間紅色的是無效的地址空間。</p></figcaption></figure>
 
+{% hint style="info" %}
+為什麼叫做_canonical_？
 
-Thus most architectures define an _unimplemented_ region of the address space which the processor will consider invalid for use. x86-64 and Itanium both define the most-significant valid bit of an address, which must then be sign-extended (see[Section 2.3.1.3.1, Sign-extension](https://www.bottomupcs.com/ch02s02.html#sign\_extension)) to create a valid address. The result of this is that the total address space is effectively divided into two parts, an upper and a lower portion, with the addresses in-between considered invalid. This is illustrated in [Figure 2.1.1.1, Illustration of canonical addresses](https://www.bottomupcs.com/ch06s02.html#canonical\_address). Valid addresses are termed _canonical addresses_ (invalid addresses being _non_-canonical).
+我們可以把這個二進位看成線性代數的感覺，也就是
 
+13(十進位) =  1101b = (1)\*2^3+(1)\*2^2+(0)\*2^1+(1)\*2^0 這樣
 
+所以全部都是寫成矩陣的樣子就會是_canonical_ (線性代數的相關的專有名詞)
+{% endhint %}
+
+處理器想要知道MSB 這個 bit 是第幾位的時候，通常可以透過指令查詢。雖然說每一個架構都有不同的答案，但是大多都是第48個bit，也就是提供 256 TiB 的可用地址空間。
+
+減少可用的地址空間也就代表處理器跟相關元件都可以節省儲存的空間，因為他們處理地址的時候不需要處理完整的 bit 位元。因為比MS還要高位元的bit是用signed-extended產生的，這樣就阻止了攜帶式的作業系統利用這些 bit 來儲存 flag 或是偷存自己的資訊，以確保未來擴充更多的地址空間的時候才可以保持相容。
 
