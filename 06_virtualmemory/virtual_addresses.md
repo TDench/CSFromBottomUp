@@ -2,27 +2,28 @@
 
 
 
-When a program accesses memory, it does not know or care where the physical memory backing the address is stored. It knows it is up to the operating system and hardware to work together to map locate the right physical address and thus provide access to the data it wants. Thus we term the address a program is using to access memory a _virtual address_. A virtual address consists of two parts; the page and an offset into that page.
+當我們的程式存取記憶體的時候，他不知道，也不會在乎這個地址的實體位置儲存在哪裡。因為程式知道真實的記憶體位置是由作業系統跟硬體一起去找到的，並且提供給程式他想要的資料。所以我們將程式使用的記憶體地址稱為「_虛擬地址(virtual address)_」，那這個虛擬地址什麼樣子呢？他有兩個部分，一個叫做 page 一個叫做 offset 。
 
-#### 6.1 Page
+## Page
 
-Since the entire possible address space is divided up into regular sized pages, every possible address resides within a page. The page component of the virtual address acts as an index into the page table. Since the page is the smallest unit of memory allocation within the system there is a trade-off between making pages very small, and thus having very many pages for the operating-system to manage, and making pages larger but potentially wasting memory
+因為整個地址空間都被切割成某個特定大小的 page ，所以每一個可能的地址都會是在某一張 page 裡面。所以虛擬地址中的 page 代表的就是 page table 裡面的索引，也就是第幾張 page 的意思。由於 page 是作業系統裡面最小的記憶體分配的單位，所以如果每一張 page 很小，那作業系統就必須管理一個數量很大的 page tables 。但如果每一張 page 很大，那可能會浪費記憶體空間。這個就交給大家去權衡一下。
 
-#### 6.2 Offset
+## Offset
 
-The last bits of the virtual address are called the _offset_ which is the location difference between the byte address you want and the start of the page. You require enough bits in the offset to be able to get to any byte in the page. For a 4K page you require (4K == (4 \* 1024) == 4096 == 212 ==) 12 bits of offset. Remember that the smallest amount of memory that the operating system or hardware deals with is a page, so each of these 4096 bytes reside within a single page and are dealt with as "one".
+虛擬地址的最後幾個 bit 就被稱為偏移量(offset)。就是指你想要的地址到這張 page 開頭差了幾個 byte 。你需要足夠的 bit 數量才可以抵達任何一個 byte 。也就是説，對於一個 4KB 的 page ，你需要 12 個 bit 的 offset 才足夠描述 4KB( 2^12) 的地址。請記得，作業系統與硬體處理的最小的單位就是 page，這 4096 byte 都在同一個 page 裡頭，被當成一個物件來處理。
 
-#### 6.3 Virtual Address Translation
+虛擬地址的最後一點稱為_偏移量_，即您想要的位元組地址與頁面開頭之間的位置差異。 您需要偏移量足夠的位數才能到達頁面中的任何位元組。 對於4K頁面，您需要（4K ==（4 \* 1024）= 4096 == 212 =，=）12位偏移量。 請記住，作業系統或硬體處理的最小記憶體量是一個頁面，因此這些4096位元組中的每一個都位於一個頁面中，並作為“一個”處理。
 
-Virtual address translation refers to the process of finding out which physical page maps to which virtual page.
+## 虛擬地址的對應關係
 
-When translating a virtual-address to a physical-address we only deal with the _page number_ . The essence of the procedure is to take the page number of the given address and look it up in the _page-table_ to find a pointer to a physical address, to which the offset from the virtual address is added, giving the actual location in system memory.
+虛體地址對應關係，英文叫做 Virtual address translation，就是在指實際上的記憶體位置如何對應到虛擬記憶體位置的轉換。
 
-Since the page-tables are under the control of the operating system, if the virtual-address doesn't exist in the page-table then the operating-system knows the process is trying to access memory that has not been allocated to it and the access will not be allowed.
+一般來說，將虛擬記憶體轉換成實體記憶體位置的時候，我們只需要知道我們想要第幾張 page 就可以了。也就是說，這個流程就是，我們輸入我們想要第幾張 page ， 然後查看 page table 就可以知道這張 page 對應到實體記憶體的哪一個地址。然後再加上 offset ，那就會是我們想要存取的實體記憶體的位置。
 
-![](../.gitbook/assets/virtaddress.svg)
+由於  page table  是由作業系統負責控制。所以你想要的虛擬地址並不存在在這張 page table 的話，作業系統就會知道這個 process 嘗試想要存取沒有分配給他的記憶體位置，這個時候就會禁止他存取這段記憶體的內容。
 
-We can follow this through for our previous example of a simple _linear_ page-table. We calculated that a 32-bit address-space would require a table of 1048576 entries when using 4KiB pages. Thus to map a theoretical address of 0x80001234, the first step would be to remove the offset bits. In this case, with 4KiB pages, we know we have 12-bits (212 == 4096) of offset. So we would right-shift out 12-bits of the virtual address, leaving us with 0x80001. Thus (in decimal) the value in row 524289 of the linear page table would be the physical frame corresponding to this page.
+<figure><img src="../.gitbook/assets/virtaddress.svg" alt=""><figcaption><p>我們的虛擬記憶體有兩個部分，一個是 page 一個是 offset 。 page 是我想要第幾張 page 的意思，假設是第13 張， page = 13, offset = 0x2F ，這個時候去查 page table 上看到 page 13 對應到實體記憶體 0x1000 0000 的位置。那我想要存取的位置就是在 0x1000 002F 的這個位置。</p></figcaption></figure>
 
-You might see a problem with a linear page-table: since every page must be accounted for, whether in use or not, a physically linear page-table is completely impractical with a 64-bit address space. Consider a 64-bit address space divided into 64 KiB pages creates 264/216 = 252 pages to be managed; assuming each page requires an 8-byte pointer to a physical location a total of 252\*23 = 255 or 32 PiB of contiguous memory would be required just for the page table! There are ways to split addressing up that avoid this which we will discuss later.
+我們如果依照之前線性的 page table 的邏輯來看。假設我們使用 page size = 4 KiB , 32 bit 的地址空間，我們需要大概一百萬個表格(1048576)。因此，假設我們的虛擬地址在 0x80001234 ，前面 0x80001 就是 page number ，去 page table 裡面找第 524289 (0x80001) ，發現這張 page 對應到實體記憶體的 0x1000000 的位置。那實際記憶體位置就是 0x10001234 這個位置。
 
+那你可能會發現到線性 page table 的問題：由於每個 page 不管有沒有被使用到，我們都必須記錄他們的對應關係。這種對應表在 64bit 的地址空間下是完全不切實際的。假設每一個 page 需要 8 byte 來記錄他的位置，那你會總共有 2^52 次方個項目會在 page table 裡面。這樣需要 8\*2^52 = 32 PiB 的空間來儲存 page table 。那我們後續會討論如何解決這個問題。
