@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.8b -->
+<!-- CreationDate: 2022-08-07 20:33:01 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="596pt" height="434pt"
+	viewBox="1598 1688 9457 6877">
+<g fill="none">
+<!-- Line -->
+<rect x="6165" y="2295" width="1305" height="540"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="1755" y="2295" width="4410" height="540"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="1755" y="4995" width="4410" height="540"
+	stroke="#000000" stroke-width="8px" stroke-dasharray="10 30"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 1598,1688 H 11055 V 8565 H 1598 z
+		M 1936,2190 1936,2130 1790,2150 1790,2171z
+		M 7334,2130 7334,2190 7481,2171 7481,2150z"/>
+</clipPath>
+</defs>
+<polyline points=" 7470,2160 1800,2160" clip-path="url(#cp0)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 1800,2160 -->
+<polygon points=" 1936,2130 1816,2160 1936,2190 1936,2130"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Backward arrow to point 7470,2160 -->
+<polygon points=" 7334,2190 7454,2160 7334,2130 7334,2190"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<rect x="8460" y="3825" width="1170" height="2070"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="8460" y="4950" width="1170" height="945" fill="#0000ff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="8460" y="5895" width="1170" height="2070"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="8460" y="1755" width="1170" height="2070"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="8325" y="1710" width="1440" height="6345"
+	stroke="#717571" stroke-width="15px" stroke-dasharray="60 60"/>
+<!-- Line -->
+<rect x="1755" y="5535" width="2160" height="495"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="4005" y="4500" width="2160" height="495"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="1755" y="4500" width="2160" height="495"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="4005" y="4005" width="2160" height="495"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="1755" y="4005" width="2160" height="495"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="4005" y="5535" width="2160" height="495"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="1620" y="3870" width="4725" height="2340"
+	stroke="#717571" stroke-width="15px" stroke-dasharray="60 60"/>
+<!-- Text -->
+<text xml:space="preserve" x="6525" y="2655" fill="#0000ff" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Offset</text>
+<!-- Text -->
+<text xml:space="preserve" x="3375" y="2655" fill="#ff0000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Page Pointer</text>
+<!-- Text -->
+<text xml:space="preserve" x="3870" y="2025" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Virtual Address</text>
+<!-- Text -->
+<text xml:space="preserve" x="8055" y="8325" fill="#008f00" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Physical Page Frames</text>
+<!-- Text -->
+<text xml:space="preserve" x="8505" y="8505" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">(System Memory)</text>
+<!-- Text -->
+<text xml:space="preserve" x="9810" y="5895" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">0x10000000</text>
+<!-- Text -->
+<g transform="translate(9990,5220) rotate(-90)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="120" text-anchor="start">Page Size</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="9810" y="3960" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">0x10001000</text>
+<!-- Text -->
+<text xml:space="preserve" x="1800" y="3780" fill="#ff0000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Page Table</text>
+<!-- Text -->
+<text xml:space="preserve" x="4230" y="5850" fill="#008f00" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Physical Page Number</text>
+<!-- Text -->
+<text xml:space="preserve" x="4275" y="4815" fill="#008f00" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Physical Page Number</text>
+<!-- Text -->
+<text xml:space="preserve" x="4275" y="4320" fill="#008f00" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Physical Page Number</text>
+<!-- Text -->
+<text xml:space="preserve" x="2520" y="5850" fill="#ff0000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Page</text>
+<!-- Text -->
+<text xml:space="preserve" x="2520" y="4815" fill="#ff0000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Page</text>
+<!-- Text -->
+<text xml:space="preserve" x="2520" y="4320" fill="#ff0000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Page</text>
+<!-- Line -->
+<polyline points=" 8684,1972 8613,1972 8613,2042 8684,2042" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,2115 8613,2115 8613,2185 8684,2185" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,2258 8613,2258 8613,2328 8684,2328" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,2401 8613,2401 8613,2471 8684,2471" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,2543 8613,2543 8613,2614 8684,2614" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,2686 8613,2686 8613,2757 8684,2757" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,2829 8613,2829 8613,2900 8684,2900" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,2972 8613,2972 8613,3043 8684,3043" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,3115 8613,3115 8613,3185 8684,3185" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,3258 8613,3258 8613,3328 8684,3328" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,3401 8613,3401 8613,3471 8684,3471" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,3544 8613,3544 8613,3614 8684,3614" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,3115 9470,3115 9470,3185 9398,3185" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,3258 9470,3258 9470,3328 9398,3328" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,3401 9470,3401 9470,3471 9398,3471" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,3544 9470,3544 9470,3614 9398,3614" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,2543 9470,2543 9470,2614 9398,2614" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,2686 9470,2686 9470,2757 9398,2757" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,2829 9470,2829 9470,2900 9398,2900" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,1972 9470,1972 9470,2042 9398,2042" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,2115 9470,2115 9470,2185 9398,2185" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,2258 9470,2258 9470,2328 9398,2328" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,2401 9470,2401 9470,2471 9398,2471" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,2972 9470,2972 9470,3043 9398,3043" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,6067 8613,6067 8613,6137 8684,6137" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,6210 8613,6210 8613,6280 8684,6280" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,6353 8613,6353 8613,6423 8684,6423" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,6496 8613,6496 8613,6566 8684,6566" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,6638 8613,6638 8613,6709 8684,6709" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,6781 8613,6781 8613,6852 8684,6852" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,6924 8613,6924 8613,6995 8684,6995" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,7067 8613,7067 8613,7138 8684,7138" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,7210 8613,7210 8613,7280 8684,7280" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,7353 8613,7353 8613,7423 8684,7423" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,7496 8613,7496 8613,7566 8684,7566" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 8684,7639 8613,7639 8613,7709 8684,7709" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,7210 9470,7210 9470,7280 9398,7280" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,7353 9470,7353 9470,7423 9398,7423" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,7496 9470,7496 9470,7566 9398,7566" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,7639 9470,7639 9470,7709 9398,7709" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,6638 9470,6638 9470,6709 9398,6709" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,6781 9470,6781 9470,6852 9398,6852" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,6924 9470,6924 9470,6995 9398,6995" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,6067 9470,6067 9470,6137 9398,6137" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,6210 9470,6210 9470,6280 9398,6280" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,6353 9470,6353 9470,6423 9398,6423" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,6496 9470,6496 9470,6566 9398,6566" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9398,7067 9470,7067 9470,7138 9398,7138" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="8684" y="1944" width="714" height="1707" fill="#e5e5e5"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="8684" y="6039" width="714" height="1707" fill="#e5e5e5"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Arc -->
+<path d="M 8970,1937 A 72 72 0 1 0 9113 1937" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Arc -->
+<path d="M 8970,6032 A 72 72 0 1 0 9113 6032" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M 1598,1688 H 11055 V 8565 H 1598 z
+		M 8378,4894 8360,4951 8467,4963 8473,4943z
+		M 7334,2130 7334,2190 7481,2171 7481,2150z"/>
+</clipPath>
+</defs>
+<path d="M 6840,2835 A 2202 2202 0 0 0 8460 4950" clip-path="url(#cp1)"
+	stroke="#0000ff" stroke-width="15px"/>
+<!-- Forward arrow to point 8460,4950 -->
+<polygon points=" 8360,4951 8427,4940 8378,4894 8360,4951"
+	stroke="#0000ff" stroke-width="30px" stroke-miterlimit="8" fill="#0000ff"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp2">
+	<path clip-rule="evenodd" d="M 1598,1688 H 11055 V 8565 H 1598 z
+		M 3284,4639 3202,4551 3080,4724 3104,4750z
+		M 7334,2130 7334,2190 7481,2171 7481,2150z"/>
+</clipPath>
+</defs>
+<path d="M 3870,2835 A 2238 2238 0 0 1 3105 4725" clip-path="url(#cp2)"
+	stroke="#000000" stroke-width="30px"/>
+<!-- Forward arrow to point 3105,4725 -->
+<polygon points=" 3202,4551 3156,4677 3284,4639 3202,4551"
+	stroke="#000000" stroke-width="60px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp3">
+	<path clip-rule="evenodd" d="M 1598,1688 H 11055 V 8565 H 1598 z
+		M 8296,5783 8261,5898 8472,5917 8482,5883z
+		M 7334,2130 7334,2190 7481,2171 7481,2150z"/>
+</clipPath>
+</defs>
+<path d="M 5895,4770 A 11065 11065 0 0 0 8460 5895" clip-path="url(#cp3)"
+	stroke="#000000" stroke-width="30px"/>
+<!-- Forward arrow to point 8460,5895 -->
+<polygon points=" 8261,5898 8393,5875 8296,5783 8261,5898"
+	stroke="#000000" stroke-width="60px" stroke-miterlimit="8" fill="#000000"/>
+</g>
+</svg>

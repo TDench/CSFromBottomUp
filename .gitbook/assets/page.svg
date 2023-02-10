@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.8b -->
+<!-- CreationDate: 2022-08-07 20:33:01 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="536pt" height="175pt"
+	viewBox="618 348 8494 2769">
+<g fill="none">
+<!-- Line -->
+<rect x="630" y="2520" width="5715" height="540"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="3060" y="2835" fill="#0000ff" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Page</text>
+<!-- Line -->
+<rect x="630" y="1980" width="5715" height="540"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="3060" y="2295" fill="#0000ff" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Page</text>
+<!-- Line -->
+<rect x="630" y="900" width="5715" height="540"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="3060" y="1215" fill="#0000ff" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Page</text>
+<!-- Line -->
+<rect x="630" y="360" width="5715" height="540"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="3060" y="675" fill="#0000ff" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Page</text>
+<!-- Line -->
+<rect x="630" y="1440" width="5715" height="540"
+	stroke="#000000" stroke-width="8px" stroke-dasharray="40 40"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 618,348 H 9112 V 3117 H 618 z
+		M 6915,2969 6855,2969 6878,3112 6892,3112z
+		M 6855,496 6915,496 6892,353 6878,353z"/>
+</clipPath>
+</defs>
+<polyline points=" 6885,360 6885,3105" clip-path="url(#cp0)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 6885,3105 -->
+<polygon points=" 6855,2969 6885,3089 6915,2969 6855,2969"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Backward arrow to point 6885,360 -->
+<polygon points=" 6915,496 6885,376 6855,496 6915,496"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Text -->
+<text xml:space="preserve" x="6975" y="1800" fill="#ff0000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Virtual Address Space</text>
+</g>
+</svg>

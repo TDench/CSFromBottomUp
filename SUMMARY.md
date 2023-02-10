@@ -16,5 +16,6 @@
 
 ## 第六章，虛體記憶體 <a href="#06_virtualmemory" id="06_virtualmemory"></a>
 
-* [虛擬記憶體](06\_virtualmemory/vm\_intro.md)
-* [作業系統架構](06\_virtualmemory/os\_organisation.md)
+* [虛擬記憶體簡介](06\_virtualmemory/vm\_intro.md)
+* [Page and Frame](06\_virtualmemory/page\_frame.md)
+* [虛體地址（Virtual Addresses）](06\_virtualmemory/virtual\_addresses.md)
