@@ -54,42 +54,51 @@
 
 ### 記憶體 Swap
 
+我們現在還可以看到 swap 記憶體是如何實作的。就是把 page table 的指標從指向主記憶體，變成指向硬碟上面的某一塊區域就可以了。
 
+當這個 page 被使用的時候，作業系統會發現他在硬碟上，然後把這段資料搬回主記憶體（請記得，程式只能在主記憶體上被執行）。如果主記憶體已經滿了，那某一張目前沒在用的 page 就必須先從主記憶體搬到硬碟之中，然後才可以把想要的那個 page 放入記憶體之中。啊如果另外一個 process 想要剛剛被換進去硬碟的那份記憶體，那剛剛那個步驟就會重複出現一次。
 
-We can also now see how the swap memory is implemented. If instead of pointing to an area of system memory the page pointer can be changed to point to a location on a disk.
+這個過程就是 swap。剛剛那個也點出了 swap 的問題。就是從硬碟載入資料到記憶體非常的慢（是硬碟跟記憶體相比的速度差很多）。大家應該都有這個經驗，聽到自己的硬碟基拉基拉的運轉，這個時候你的電腦像是當掉一樣沒有什麼反應，在等待硬碟回應。
 
-When this page is referenced, the operating system needs to move it from the disk back into system memory (remember, program code can only execute from system memory). If system memory is full, then _another_ page needs to be kicked out of system memory and put into the swap disk before the required page can be put in memory. If another process wants that page that was just kicked out back again, the process repeats.
+**mmap**
 
-This can be a major issue for swap memory. Loading from the hard disk is very slow (compared to operations done in memory) and most people will be familiar with sitting in front of the computer whilst the hard disk churns and churns whilst the system remains unresponsive.
+另外一個不同但是相關的 process 就是「記憶體映射」`mmap`系統呼叫(memory map)。假設一個 page 不是指向主記憶體，而是指向一個檔案，指向硬碟，我們就稱這個檔案被 `mmap`。
 
-**7.3.1 mmap**
+一般來說，我們需要用 `open` 硬碟上的檔案去取得「檔案描述(file descriptor, fd )」後，才可以去讀寫 `read`和`write`這檔案，當檔案被mmap 時，可以像是存取記憶體的方式去存取就可以了。
 
-A different but related process is the memory map, or `mmap` (from the system call name). If instead of the page table pointing to physical memory or swap the page table points to a file, on disk, we say the file is `mmap`ed.
+{% hint style="info" %}
+檔案描述符 （file descriptor, fd）
 
-Normally, you need to `open` a file on disk to obtain a file descriptor, and then `read` and `write` it in a sequential form. When a file is mmaped it can be accessed just like system RAM.
+Unix 的概念是「一切都是檔案」，可以把這個 fd 想成是一個檔案的介面，可以讓使用者打開，存取檔案的一個介面。
+{% endhint %}
 
-#### 7.4 Sharing memory
+### 共享記憶體
 
-Usually, each process gets its own page table, so any address it uses is mapped to a unique frame in physical memory. But what if the operating system points two page table-entries to the same frame? This means that this frame will be shared; and any changes that one process makes will be visible to the other.
+通常，每一個 process 都有自己的 page table 。因此，任何一個地址都會對應到一個獨特的物理位置 frame 。但是，如果作業系統把兩張 page table 都指向同一個 frame 的話是什麼意思？這個就代表這個 frame 被兩個 process 「共享」，任何一邊所做的更改，另外一個 process 都可以看見這個數值被更改。
 
-You can see now how threads are implemented. In [Section 4.3.1, `clone` ](https://www.bottomupcs.com/ch05s04.html#linux\_clone)we said that the Linux `clone()` function could share as much or as little of a new process with the old process as it required. If a process calls `clone()` to create a new process, but requests that the two processes share the same page table, then you effectively have a _thread_ as both processes see the same underlying physical memory.
+你現在可以看看執行緒( threads) 是如何被實作的。我們之前提過， Linux的`clone()`函式可以根據你的需求，盡可能的共享或是盡可能的不共享他們之間的記憶體內容。如果有一個 process 呼叫了 `clone()`來建立新 process ，然後要求作業系統他們兩個之間用同一張 page table ，那你實際上就是有了一個執行緒(thread) 因為他們兩個都可以看到相同的物理記憶體的內容。
 
-You can also see now how copy on write is done. If you set the permissions of a page to be read-only, when a process tries to write to the page the operating system will be notified. If it knows that this page is a copy-on-write page, then it needs to make a new copy of the page in system memory and point the page in the page table to this new page. This can then have its attributes updated to have write permissions and the process has its own unique copy of the page.
+你現在也知道寫入時複製（_Copy-on-write, COW_）是如何達成的。你可以將某個 page 設定成唯讀，當有 process 嘗試寫入資料的時候，作業系統就會收到通知。如果作業系統知道這個 page 是「寫入時複製」，那就會複製一份這個 page 的資訊，然後修改 page table 到新的地方，然後把這個 page 給想要寫入的那個 process 寫。然後那個 process 可以更改那個 page 的屬性，讓他具有可以寫入的權限，讓這個 process 獨家擁有自己的一個 page 的複製資訊。
 
-#### 7.5 Disk Cache
+{% hint style="info" %}
+什麼是寫入時複製（_Copy-on-write, COW_）
 
-In a modern system, it is often the case that rather than having too little memory and having to swap memory out, there is more memory available than the system is currently using.
+這個是一個策略，通常是如果有多個呼叫者（callers）同時請求相同資源（例如記憶體或磁碟上的資料），那他們會共同取得相同的指標指向相同的資源，直到某個人想要更改這個資源的內容時，系統才會真正複製一份專用副本（private copy）給該呼叫者，而其他呼叫者所見到的最初的資源仍然保持不變。
+{% endhint %}
 
-The memory hierarchy tells us that disk access is much slower than memory access, so it makes sense to move as much data from disk into system memory if possible.
+### 硬碟快取（Disk Cache）
 
-Linux, and many other systems, will copy data from files on disk into memory when they are used. Even if a program only initially requests a small part of the file, it is highly likely that as it continues processing it will want to access the rest of file. When the operating system has to read or write to a file, it first checks if the file is in its memory cache.
+現代的電腦，通常可用的記憶體還蠻多的，所以不需要做虛擬記憶體，也不需要做 swap。
 
-These pages should be the first to be removed as memory pressure in the system increases.
+但你也知道，存取記憶體比存取硬碟快很多，所以可以的話，盡量把資料從硬碟放到記憶體是很有幫忙的。
 
-**7.5.1 Page Cache**
+Linux和許多其他作業系統，都會在檔案被使用到的時候，複製一份放在記憶體之中。即時這段程式只是想要用檔案的一個很小的部分，有很高的機率，這個程式還會想要存取這個檔案的其他的部分。所以當作業系統需要讀取或寫入檔案的時候，他都會先檢查這個檔案有沒有放在記憶體的快取中。
 
-A term you might hear when discussing the kernel is the _page cache_.
+如果在你有記憶體空間不足的情況下，就是先刪除這些硬碟快取。
 
-The _page cache_ refers to a list of pages the kernel keeps that refer to files on disk. From above, swap page, mmaped pages and disk cache pages all fall into this category. The kernel keeps this list because it needs to be able to look them up quickly in response to read and write requests XXX: this bit doesn't file?
+#### **Page Cache**
 
-\
+在討論作業系統的核心( kernel ) 時，你可以會聽到這個專有名詞 「**Page Cache**」。
+
+這個就是核心保留的一張「硬碟上的 file 的 pages  的列表」，剛剛提到的 swap的、 mmap 的、硬碟快取那些都是會被保留的 page ，核心保留這些東西就可以在讀寫的時候快速的反應。
+
