@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.8b -->
+<!-- CreationDate: 2022-08-07 20:33:01 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="404pt" height="300pt"
+	viewBox="2622 1428 6400 4749">
+<g fill="none">
+<!-- Line -->
+<rect x="5400" y="2385" width="2295" height="405"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="5625" y="2655" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Segment Register</text>
+<!-- Line -->
+<rect x="5400" y="2835" width="2295" height="405"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="5625" y="3105" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Segment Register</text>
+<!-- Line -->
+<rect x="5400" y="3285" width="2295" height="405"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="5625" y="3555" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Segment Register</text>
+<!-- Arc -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 2622,1428 H 9022 V 6177 H 2622 z
+		M 4264,2679 4253,2590 4083,2646 4086,2667z"/>
+</clipPath>
+</defs>
+<path d="M 5400,2655 A 4614 4614 0 0 0 4095 2655" clip-path="url(#cp0)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 4095,2655 -->
+<polygon points=" 4253,2590 4139,2649 4264,2679 4253,2590"
+	stroke="#000000" stroke-width="30px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M 2622,1428 H 9022 V 6177 H 2622 z
+		M 4264,4074 4230,3991 4081,4089 4089,4109z"/>
+</clipPath>
+</defs>
+<path d="M 5400,3060 A 2730 2730 0 0 1 4095 4095" clip-path="url(#cp1)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 4095,4095 -->
+<polygon points=" 4230,3991 4136,4078 4264,4074 4230,3991"
+	stroke="#000000" stroke-width="30px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp2">
+	<path clip-rule="evenodd" d="M 2622,1428 H 9022 V 6177 H 2622 z
+		M 4241,5447 4176,5385 4080,5535 4095,5550z"/>
+</clipPath>
+</defs>
+<path d="M 5400,3510 A 6106 6106 0 0 1 4095 5535" clip-path="url(#cp2)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 4095,5535 -->
+<polygon points=" 4176,5385 4126,5503 4241,5447 4176,5385"
+	stroke="#000000" stroke-width="30px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp3">
+	<path clip-rule="evenodd" d="M 2622,1428 H 9022 V 6177 H 2622 z
+		M 4239,1846 4266,1760 4088,1742 4082,1762z"/>
+</clipPath>
+</defs>
+<path d="M 5760,1755 A 2590 2590 0 0 1 4095 1755" clip-path="url(#cp3)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 4095,1755 -->
+<polygon points=" 4266,1760 4138,1768 4239,1846 4266,1760"
+	stroke="#000000" stroke-width="30px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<rect x="2655" y="2115" width="1440" height="585" id="p0"/>
+<pattern id="tile0" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -7,30 73,70 M 61,-3 141,37"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p0" fill="#ffffff"/>
+<use xlink:href="#p0" fill="url(#tile0)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="2655" y="3510" width="1440" height="585" id="p1"/>
+<pattern id="tile1" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -7,30 73,70 M 61,-3 141,37"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p1" fill="#ffffff"/>
+<use xlink:href="#p1" fill="url(#tile1)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="2655" y="4950" width="1440" height="585" id="p2"/>
+<pattern id="tile2" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -7,30 73,70 M 61,-3 141,37"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p2" fill="#ffffff"/>
+<use xlink:href="#p2" fill="url(#tile2)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="2655" y="1440" width="1440" height="4725"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 2655,1710 4095,1710"
+	stroke="#ff0000" stroke-width="30px"/>
+<!-- Line -->
+<rect x="5220" y="2205" width="3780" height="1665"
+	stroke="#008f00" stroke-width="15px" stroke-dasharray="60 60"/>
+<!-- Text -->
+<text xml:space="preserve" x="4410" y="1665" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">How do we get this address?</text>
+<!-- Text -->
+<text xml:space="preserve" x="8100" y="3150" fill="#008f00" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="168" text-anchor="start">CPU</text>
+</g>
+</svg>

@@ -19,4 +19,4 @@
 * [虛擬記憶體簡介](06\_virtualmemory/vm\_intro.md)
 * [Page and Frame](06\_virtualmemory/page\_frame.md)
 * [虛體地址（Virtual Addresses）](06\_virtualmemory/virtual\_addresses.md)
-* [Page 1](06\_virtualmemory/page-1.md)
+* [硬體支援](06\_virtualmemory/hw\_support.md)
