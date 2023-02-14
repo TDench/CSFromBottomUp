@@ -62,63 +62,41 @@ page table 的地址被儲存在每個有關連的 process 的暫存器裡面。
 
 #### **其他跟 page 相關的錯誤**
 
-TLB 通常還有兩種常見的壞掉的方法，
+TLB 通常還有兩種常見的出錯，這種錯誤訊息有助於管理存取控制，跟被修改過的 page (dirty page)。每一張 page 都有某種形式的屬性，例如用一個 bit 去標記這個 page 是否被存取過，或者是修改過。
 
-TLB通常可以產生另外兩個重要故障，這些故障有助於控制訪問和髒頁面。 每個頁面通常包含一個以單個位為形式的屬性，該屬性標記是否已訪問或髒。
+一個被存取過的 page 指的是這個 page 跟 frame 的對應關係已經存在 TLB 上。那這個 page 就會被標記成 accessed  。
 
-There are two other important faults that the TLB can generally generate which help to mange accessed and dirty pages. Each page generally contains an attribute in the form of a single bit which flags if the page has been accessed or is dirty.
+作業系統可以定期檢查所有的 page ，刪除掉一些 accessed bit 以了解現在哪些 page 有被使用中。當主記憶體快要滿了的時候，作業系統可以選擇這些沒有「已存取標記」的 page 交換到硬碟之中，因為他們很久沒有被用到了。
 
-訪問的頁面只是任何已被訪問的頁面。 當頁面翻譯最初載入到TLB時，頁面可以標記為已訪問（您為什麼要載入它？[ 2）](https://www.bottomupcs.com/ch06s08.html#the\_tlb\_s2\_para2\_footnote1-fnote)
+一個髒的 page ，就是有寫入資料的 page 。所以硬碟上的那份備份就跟記憶體上面的那份不匹配。例如，如果一張 page 從硬碟被交換出來，然後被一個 process 改寫，那要記得在下一次 swap 之前，更新硬碟裡面的備份。那如果這個 page 不是髒（dirty）的。那我們就不需要花時間成本去將這個 page 複製到硬碟之中。
 
-作業系統可以定期瀏覽_所有_頁面並清除訪問位，以瞭解當前使用的頁面。 當系統記憶體滿，作業系統選擇要交換到磁碟的頁面時，顯然那些訪問位尚未重置的頁面是刪除的最佳候選頁面，因為它們的使用時間不長。
+兩者的概念很相近，因為他們可以幫助作業系統管理 page 。一般的概念就是，一個 page 會多兩個 bits。一個代表 accessed 一個代表 dirty。當一張 page 被放到 TLB 的時候，CPU 會檢查這些 bits 然後看要不要發出一個錯誤訊息。
 
-髒頁面是寫入資料的頁面，因此與磁碟上已經存在的任何資料不匹配。 例如，如果頁面從交換中載入，然後由程序寫入，則在將其移出交換之前，它需要更新其磁碟副本。 乾淨的頁面沒有變化，因此我們不需要將頁面複製回磁碟的開銷。
+當一個 process 想要存取記憶體的時候，硬體會執行常規的翻譯。然後，他還會做一些額外的檢查，檢查是不是有 accessed bit。如果沒有的話，那就會發起一個錯誤訊息。告訴作業系統，這個 bit 應該要被舉起來，才能允許這個 process 繼續做下去。相同的，如果硬體發現這張 page 被寫過了，但是 dirty bit 沒有被舉起來，那他就會發起一個錯誤訊息，告訴作業系統，這張 page 應該要舉 dirty。
 
-兩者都很相似，因為它們有助於作業系統管理頁面。 一般的概念是，一個頁面有兩個額外的位：髒位和訪問位。 當頁面放入TLB時，這些位被設定為指示CPU應該引發故障。
+## TLB 管理
 
-當程序嘗試引用記憶體時，硬體會執行通常的翻譯過程。 然而，它還會進行額外的檢查，看看是否_沒有_設定訪問的標誌。 如果是這樣，它會給作業系統帶來故障，作業系統應該設定位並允許程序繼續。 同樣，如果硬體檢測到它寫入沒有髒位集的頁面，操作系統將頁面標記為髒位會引發故障。
+我們可以這樣理解，TLB 是給硬體使用的，但是是由軟體管理。作業系統需要負責正確的對應關係載入 TLB和把不要的對應關係刪掉。
 
-An accessed page is simply any page that has been accessed. When a page translation is initially loaded into the TLB the page can be marked as having been accessed (else why were you loading it in?[2](https://www.bottomupcs.com/ch06s08.html#the\_tlb\_s2\_para2\_footnote1-fnote))
+### **Flushing TLB**
 
-The operating system can periodically go through _all_ the pages and clear the accessed bit to get an idea of what pages are currently in use. When system memory becomes full and it comes time for the operating system to choose pages to be swapped out to disk, obviously those pages whose accessed bit has not been reset are the best candidates for removal, because they have not been used the longest.
+這個把 TLB 的內容移除的動作叫做 「_flushing_」。更新 TLB 是維護每一個 process 的地址的重要步驟。因為每一個 process 都使用相同的虛擬地址範圍，而且不更新 TLB 的話，那就會有一個 process 覆蓋到另外一個 process 的記憶體（相反的，在 thread 共享記憶體空間，這種時候你就不會 flush TLB，因為這個就是你想要的性質）。
 
-A dirty page is one that has data written to it, and so does not match any data already on disk. For example, if a page is loaded in from swap and then written to by a process, before it can be moved out of swap it needs to have its on disk copy updated. A page that is clean has had no changes, so we do not need the overhead of copying the page back to disk.
+這某些處理器上，只要有「context switch」，整個 TLB 就會更新。這個是很花時間的，因為這件事情代表說新的 process 需要經歷 page fault -> 從 page table 找到對應關係 ->  對應關係載入 TLB 這個漫長的路。
 
-Both are similar in that they help the operating system to manage pages. The general concept is that a page has two extra bits; the dirty bit and the accessed bit. When the page is put into the TLB, these bits are set to indicate that the CPU should raise a fault .
+其他處理器會實作一個東西叫做 「extra _address space ID_ (ASID)」這些 ASID 會被新增到 TLB 的每一個地址之中。這就讓每一個地址空間(通常是在說 process，因為 thread 共享記憶體空間。)都有自己獨特的ID ，這個 ID 會跟著對應關係一起儲存在 TLB 之中。所以在 context switch 的時候就不需要更新整個 TLB 表格，因為下一個 process 會有另外的一個地址空間的 ID ，所以就算下一個 process 要求存取同一個虛擬記憶體的位置，因為 ASID 的關係，翻譯之後他們會對應到不同的物理記憶體位置。這個架構節省了更新 TLB 的時間，增進了系統的效能，缺點就是他需要更多的 TLB 硬體來儲存這些 ASID bit 。
 
-When a process tries to reference memory, the hardware does the usual translation process. However, it also does an extra check to see if the accessed flag is _not_ set. If so, it raises a fault to the operating system, which should set the bit and allow the process to continue. Similarly if the hardware detects that it is writing to a page that does not have the dirty bit set, it will raise a fault for the operating system to mark the page as dirty.
+一般來說，這個是透過一個額外的暫存器來實作的。這個暫存器是某個 process 的狀態，這個狀態包含 ASID 。當要進行虛擬地址轉換到真實記憶體位置的活動的時候，TLB 會去看這個暫存器的數值，找到符合現在這個 process 的 ASID 才會用這個做翻譯。當然，暫存器的 bit 數量會影響到實際上有幾個 ASID 可以使用，因此會影響效能，可以參考下一個小節會有「補上 section 10 」 的範例說明。
 
-#### 8.3 TLB Management
+### **軟/硬體載入 TLB**
 
-We can say that the TLB used by the hardware but managed by software. It is up to the operating system to load the TLB with correct entries and remove old entries.
+雖然說最後都是作業系統掌控整個 TLB 。但這個只是部分的處理而已。在剛剛有提到（[page fault](hw\_support.md#page-faults)）描述了 page fault 是如何被作業系統處理的，發生 page fault -> OS 遍歷 page table 找關係 -> 關係寫入 TLB 這個流程稱為「軟體載入的 TLB」，但其實我們還有硬體載入 TLB 的選項。
 
-**8.3.1 Flushing the TLB**
+在硬體載入 TLB 的選項裡，處理器的架構會定義 page table 的格式，這樣才能做虛擬地址的轉換。在虛擬地址沒有在 TLB 的況下，處理器會自動遍歷整張 page table 然後載入正確的對應關係到 TLB 之中。只有在 page table 也找不到的情況下，處理器才會發出異常，請作業系統處理。
 
-The process of removing entries from the TLB is called _flushing_. Updating the TLB is a crucial part of maintaining separate address spaces for processes; since each process can be using the same virtual address not updating the TLB would mean a process might end up overwriting another processes memory (conversely, in the case of _threads_ sharing the address-space is what you want, thus the TLB is _not_ flushed when switching between threads in the same process).&#x20;
+硬體遍歷 page table 有速度上的優勢，但是會讓作業系統的實作變得比較受限。
 
-On some processors, every time there is a context switch the entire TLB is flushed. This can be quite expensive, since this means the new process will have to go through the whole process of taking a page fault, finding the page in the page tables and inserting the translation.
+大致上的架構都可以被分類成這兩個方法，後面我們會帶大家看看一般架構是如何實現虛擬地址的。
 
-Other processors implement an extra _address space ID_ (ASID) which is added to each TLB translation to make it unique. This means each address space (usually each process, but remember threads want to share the same address space) gets its own ID which is stored along with any translations in the TLB. Thus on a context switch the TLB does _not_ need to be flushed, since the next process will have a different address space ID and even if it asks for the same virtual address, the address space ID will differ and so the translation to physical page will be different. This scheme reduces flushing and increases overall system performance, but requires more TLB hardware to hold the ASID bits.
-
-Generally, this is implemented by having an additional register as part of the process state that includes the ASID. When performing a virtual-to-physical translation, the TLB consults this register and will only match those entries that have the same ASID as the currently running process. Of course the width of this register determines the number of ASID's available and thus has performance implications. For an example of ASID's in a processor architecture see [Section 10.2.1, Address spaces](https://www.bottomupcs.com/ch06s10.html#itanium\_address\_spaces).
-
-**8.3.2 Hardware v Software loaded TLB**
-
-While the control of what ends up in the TLB is the domain of the operating system; it is not the whole story. The process described in [Section 8.2.1, Page Faults](https://www.bottomupcs.com/ch06s08.html#page\_faults) describes a page-fault being raised to the operating system, which traverses the page-table to find the virtual-to-physical translation and installs it in the TLB. This would be termed a _software-loaded TLB_ — but there is another alternative; the _hardware-loaded TLB_.
-
-In a hardware loaded TLB, the processor architecture defines a particular layout of page-table information ([Section 5, Pages + Frames = Page Tables](https://www.bottomupcs.com/ch06s05.html) which must be followed for virtual address translation to proceed. In response to access to a virtual-address that is not present in the TLB, the processor will automatically walk the page-tables to load the correct translation entry. Only if the translation entry does not exist will the processor raise an exception to be handled by the operating system.
-
-Implementing the page-table traversal in specialised hardware gives speed advantages when finding translations, but removes flexibility from operating-systems implementors who might like to implement alternative schemes for page-tables.
-
-All architectures can be broadly categorised into these two methodologies. Later, we will examine some common architectures and their virtual-memory support.
-
-\
-
-
-
-
-
-
-\
 
 
