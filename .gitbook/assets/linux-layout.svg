@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.8b -->
+<!-- CreationDate: 2022-08-07 20:33:01 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="549pt" height="407pt"
+	viewBox="1203 663 8714 6448">
+<g fill="none">
+<!-- Arc -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 1203,663 H 9917 V 7111 H 1203 z
+		M 7641,4416 7588,4387 7551,4503 7563,4509z"/>
+</clipPath>
+</defs>
+<path d="M 8730,4095 A 875 875 0 0 0 7560 4500" clip-path="url(#cp0)"
+	stroke="#666666" stroke-width="8px"/>
+<!-- Forward arrow to point 7560,4500 -->
+<polygon points=" 7588,4387 7585,4454 7641,4416 7588,4387"
+	stroke="#666666" stroke-width="45px" stroke-miterlimit="8" fill="#666666"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M 1203,663 H 9917 V 7111 H 1203 z
+		M 8687,6641 8745,6625 8690,6517 8677,6520z"/>
+</clipPath>
+</defs>
+<path d="M 8055,7020 A 415 415 0 0 0 8685 6525" clip-path="url(#cp1)"
+	stroke="#666666" stroke-width="8px"/>
+<!-- Forward arrow to point 8685,6525 -->
+<polygon points=" 8745,6625 8699,6575 8687,6641 8745,6625"
+	stroke="#666666" stroke-width="45px" stroke-miterlimit="8" fill="#666666"/>
+<!-- Line -->
+<rect x="2610" y="1800" width="1170" height="3240"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="4095" y="1800" width="1170" height="3240"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5625" y="1800" width="1170" height="3240"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7110" y="1800" width="1170" height="3240"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="2610" y="675" width="5670" height="1125"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5175" y="5490" width="360" height="990" fill="#0000b0"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="2610" y="1260" width="1170" height="270" fill="#0000b0"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="4095" y="1260" width="1170" height="270" fill="#0000b0"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5625" y="1260" width="1170" height="270" fill="#0000b0"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7110" y="1260" width="1170" height="270" fill="#0000b0"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="2610" y="4545" width="1170" height="270" fill="#8f008f"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="2385" y="5490" width="360" height="990" fill="#8f008f"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="4095" y="4545" width="1170" height="270" fill="#008f00"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="6705" y="5490" width="360" height="990" fill="#008f00"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5625" y="4545" width="1170" height="270" fill="#ff0000"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="3420" y="5490" width="360" height="990" fill="#ff0000"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="8460" y="5490" width="360" height="990" fill="#008f8f"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp2">
+	<path clip-rule="evenodd" d="M 1203,663 H 9917 V 7111 H 1203 z
+		M 2460,4949 2400,4949 2423,5092 2437,5092z
+		M 2400,811 2460,811 2437,668 2423,668z"/>
+</clipPath>
+</defs>
+<polyline points=" 2430,675 2430,5085" clip-path="url(#cp2)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 2430,5085 -->
+<polygon points=" 2400,4949 2430,5069 2460,4949 2400,4949"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Backward arrow to point 2430,675 -->
+<polygon points=" 2460,811 2430,691 2400,811 2460,811"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp3">
+	<path clip-rule="evenodd" d="M 1203,663 H 9917 V 7111 H 1203 z
+		M 8490,1709 8430,1709 8453,1852 8467,1852z
+		M 8430,811 8490,811 8467,668 8453,668z"/>
+</clipPath>
+</defs>
+<polyline points=" 8460,675 8460,1845" clip-path="url(#cp3)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 8460,1845 -->
+<polygon points=" 8430,1709 8460,1829 8490,1709 8430,1709"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Backward arrow to point 8460,675 -->
+<polygon points=" 8490,811 8460,691 8430,811 8490,811"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<rect x="1215" y="5490" width="8280" height="990"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="2610" y="675" width="1170" height="1125"
+	stroke="#666666" stroke-width="8px" stroke-dasharray="10 30"/>
+<!-- Line -->
+<rect x="4095" y="675" width="1170" height="1125"
+	stroke="#666666" stroke-width="8px" stroke-dasharray="10 30"/>
+<!-- Line -->
+<rect x="5625" y="675" width="1170" height="1125"
+	stroke="#666666" stroke-width="8px" stroke-dasharray="10 30"/>
+<!-- Line -->
+<rect x="7110" y="675" width="1170" height="1125"
+	stroke="#666666" stroke-width="8px" stroke-dasharray="10 30"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp4">
+	<path clip-rule="evenodd" d="M 1203,663 H 9917 V 7111 H 1203 z
+		M 8490,4949 8430,4949 8453,5092 8467,5092z
+		M 8430,2026 8490,2026 8467,1883 8453,1883z"/>
+</clipPath>
+</defs>
+<polyline points=" 8460,1890 8460,5085" clip-path="url(#cp4)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 8460,5085 -->
+<polygon points=" 8430,4949 8460,5069 8490,4949 8430,4949"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Backward arrow to point 8460,1890 -->
+<polygon points=" 8490,2026 8460,1906 8430,2026 8490,2026"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<rect x="7110" y="4545" width="1170" height="270" fill="#008f8f"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="5085" y="1035" fill="#00008f" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="168" text-anchor="start">Kernel</text>
+<!-- Text -->
+<text xml:space="preserve" x="2745" y="3015" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="168" text-anchor="start">Process</text>
+<!-- Text -->
+<text xml:space="preserve" x="4185" y="3015" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="168" text-anchor="start">Process</text>
+<!-- Text -->
+<text xml:space="preserve" x="5715" y="3015" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="168" text-anchor="start">Process</text>
+<!-- Text -->
+<text xml:space="preserve" x="7200" y="3015" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="168" text-anchor="start">Process</text>
+<!-- Text -->
+<text xml:space="preserve" x="3960" y="5895" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="168" text-anchor="start">Physical</text>
+<!-- Text -->
+<text xml:space="preserve" x="3960" y="6210" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="168" text-anchor="start">Memory</text>
+<!-- Text -->
+<g transform="translate(2340,4140) rotate(-90)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">Processor Address Space</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="8820" y="1485" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">(Shared)</text>
+<!-- Text -->
+<text xml:space="preserve" x="8595" y="1215" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">Kernel Space</text>
+<!-- Text -->
+<text xml:space="preserve" x="8595" y="3285" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">User Space</text>
+<!-- Text -->
+<text xml:space="preserve" x="8775" y="3600" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">(Private)</text>
+<!-- Text -->
+<text xml:space="preserve" x="8820" y="4185" fill="#666666" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">Pages</text>
+<!-- Text -->
+<text xml:space="preserve" x="5940" y="6930" fill="#666666" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">Physical Memory Frame</text>
+</g>
+</svg>

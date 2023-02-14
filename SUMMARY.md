@@ -20,3 +20,4 @@
 * [Page and Frame](06\_virtualmemory/page\_frame.md)
 * [虛體地址（Virtual Addresses）](06\_virtualmemory/virtual\_addresses.md)
 * [硬體支援](06\_virtualmemory/hw\_support.md)
+* [Linux 的虛擬記憶體](06\_virtualmemory/linux-de-xu-ni-ji-yi-ti.md)
