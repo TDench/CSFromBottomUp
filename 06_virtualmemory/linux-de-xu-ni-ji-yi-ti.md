@@ -20,11 +20,9 @@ Linux 會將可用的地址空間切成兩個部分，一個部分是核心使�
 
 ## 三層 Page Table
 
+作業系統有許多不同的方法來組織 page talbe，但 linux 選擇使用分層系統( _hierarchical_system )
 
 
-There are many different ways for an operating system to organise the page tables but Linux chooses to use a _hierarchical_system.
-
-作業系統有許多不同的方法來組織頁面表，但Linux選擇使用_分層_系統。
 
 \
 
