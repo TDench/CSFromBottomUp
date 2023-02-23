@@ -20,35 +20,22 @@ Linux 會將可用的地址空間切成兩個部分，一個部分是核心使�
 
 ## 三層 Page Table
 
-作業系統有許多不同的方法來組織 page talbe，但 linux 選擇使用分層系統( _hierarchical_ system )
+作業系統有許多不同的方法來組織 page table，但 linux 選擇使用分層系統( _hierarchical_ system )
 
-由於 page table 使用分層的結構
+由於 page table 分了三層的原因，Linux 這個方案也常常被稱為 「_three level page table_」。這是一個很強健的方案，雖然說也是有一些批評跟缺點存在。每一種處理器的實現虛擬記憶體的細節都不相同，但是 linux 要是 portable 並且相對通用的選擇
 
+三層 page table 的概念不是很難。我們已經知道虛擬地址用 page number 跟 offset  來表達實體記憶體的地址。在三層的 page table 中，這些虛擬地址被拆分成更多的 level。
 
-
-\
-
-
-As the page tables use a hierarchy that is three levels deep, the Linux scheme is most commonly referred to as the _three level page table_. The three level page table has proven to be robust choice, although it is not without its criticism. The details of the virtual memory implementation of each processor vary Whitley meaning that the generic page table Linux chooses must be portable and relatively generic.
-
-由於頁面表使用三級深度的層次結構，Linux方案通常被稱為_三級頁面表_。 事實證明，三級頁面表是一個強大的選擇，儘管它並非沒有批評。 每個處理器的虛擬記憶體實現細節各不相同，惠特利意味著Linux選擇的通用頁面表必須是可移植的，並且相對通用。
-
-The concept of the three level page table is not difficult. We already know that a virtual address consists of a page number and an offset in the physical memory page. In a three level page table, the virtual address is further split up into a number _levels_.
-
-三級頁表的概念並不難。 我們已經知道，虛擬地址由物理記憶體頁面中的頁碼和偏移量組成。 在三級頁面表中，虛擬地址進一步拆分為數字_級別_。
-
-Each level is a page table of its own right; i.e. it maps a page number of a physical page. In a single level page table the "level 1" entry would directly map to the physical frame. In the multilevel version each of the upper levels gives the address of the physical memory frame holding the next lower levels page table.
-
-每個級別本身就是一個頁面表；即它對映物理頁面的頁碼。 在單個級別的頁面表中，“級別1”條目將直接對映到物理幀。 在多級版本中，每個上層都提供了物理記憶體幀的地址，該幀儲存了下一個較低級別頁面表。
+每一個 level 本身就是一個 page table。 level 1 會直接對應到leve2 這張 page table 的物理位置， level 3 會對應到另外一個物理位置，
 
 <figure><img src="../.gitbook/assets/threelevel-2.svg" alt=""><figcaption></figcaption></figure>
 
-So a sample reference involves going to the top level page table, finding the physical frame that the next level address is on, reading that levels table and finding the physical frame that the next levels page table lives on, and so on.
+所以一個簡單的虛擬記憶體對應到實體的位置，就會變成先找 level 1 的某一個物理記憶體的位置，然後再找下一層的記憶體位置，重複這個步驟這樣。
 
-At first, this model seems to be needlessly complex. The main reason this model is implemented is for size considerations. Imagine the theoretical situation of a process with only one single page mapped right near the end of its virtual address space. We said before that the page table entry is found as an offset from the page table base register, so the page table needs to be a contiguous array in memory. So the single page near the end of the address space requires the entire array, which might take up considerable space (many, many physical pages of memory).
+直接看這個架構感覺就是沒有必要的複雜。這個架構的考量是記憶體大小。想像一下，如果只有一個 page table 要對應整個記憶體空間，這張 page table 要很大一張。就是之前有提到的， page table 就是給你查表記憶體位置的，基本上是連續的。如果你可以用的記憶體空間很大，那這張表也會很大。
 
-In a three level system, the first level is only one physical frame of memory. This maps to a second level, which is again only a single frame of memory, and again with the third. Consequently, the three level system reduces the number of pages required to only a fraction of those required for the single level system.
+所以在三層系統中， level 1 只是一個實體記憶體的 frame ，對應到下一個 level 的 page table ，這樣。所以每一張 page table 的大小就可以縮小了。
 
-There are obvious disadvantages to the system. Looking up a single address takes more references, which can be expensive. Linux understands that this system may not be appropriate on many different types of processor, so each architecture can_collapse_ the page table to have less levels easily (for example, the most common architecture, the x86, only uses a two level system in its implementation).
+缺點也是很明顯，本來查表一次就可以找到實體記憶體的位置，現在要查很多次，這個可能會很耗費時間。 Linux 也知道這件事情，很多處理器可能不適合這個架構，所以有些架構會簡化 page table 變成兩層(例如 x86 就是用兩層的 page table )。
 
 \
