@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.8b -->
+<!-- CreationDate: 2022-08-07 20:33:01 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="683pt" height="426pt"
+	viewBox="438 293 10830 6749">
+<g fill="none">
+<!-- Line -->
+<polyline points=" 1935,1755 2520,2115 2520,4725 1935,2025" fill="#f1ece0"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 5265,1757 4680,2117 4680,4727 5265,2027" fill="#f1ece0"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 6595,1750 8280,1215 8280,2025 6595,2020" fill="#f1ece0"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="8280" y="405" width="900" height="810"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="8415" y="855" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region 0</text>
+<!-- Line -->
+<rect x="8280" y="1215" width="900" height="810"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="8415" y="1665" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region 1</text>
+<!-- Line -->
+<rect x="8280" y="2025" width="900" height="810"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="8415" y="2475" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region 2</text>
+<!-- Line -->
+<rect x="8280" y="2835" width="900" height="810"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="8415" y="3285" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region 3</text>
+<!-- Line -->
+<rect x="8280" y="3645" width="900" height="810"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="8415" y="4095" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region 4</text>
+<!-- Line -->
+<rect x="8280" y="4455" width="900" height="810"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="8415" y="4905" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region 5</text>
+<!-- Line -->
+<rect x="8280" y="5265" width="900" height="810"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="8415" y="5715" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region 6</text>
+<!-- Line -->
+<rect x="8280" y="6075" width="900" height="810"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="8415" y="6525" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region 7</text>
+<!-- Text -->
+<text xml:space="preserve" x="9315" y="3780" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0x8000 0000 0000 0000</text>
+<!-- Text -->
+<text xml:space="preserve" x="9315" y="4590" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0xA000 0000 0000 0000</text>
+<!-- Text -->
+<text xml:space="preserve" x="9315" y="5400" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0xC000 0000 0000 0000</text>
+<!-- Text -->
+<text xml:space="preserve" x="9315" y="6210" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0xE000 0000 0000 0000</text>
+<!-- Text -->
+<text xml:space="preserve" x="9315" y="540" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0x0000 0000 0000 0000</text>
+<!-- Text -->
+<text xml:space="preserve" x="9315" y="1350" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0x2000 0000 0000 0000</text>
+<!-- Text -->
+<text xml:space="preserve" x="9315" y="2160" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0x4000 0000 0000 0000</text>
+<!-- Text -->
+<text xml:space="preserve" x="9315" y="2970" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0x6000 0000 0000 0000</text>
+<!-- Line -->
+<rect x="2520" y="2115" width="2160" height="2610"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="2520" y="4050" width="2160" height="540" id="p0"/>
+<pattern id="tile0" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -7,30 73,70 M 61,-3 141,37"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p0" fill="#ffffff"/>
+<use xlink:href="#p0" fill="url(#tile0)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="2520" y="3285" width="2160" height="540" id="p1"/>
+<pattern id="tile1" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -7,37 73,-3 M 61,70 141,30"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p1" fill="#c0c0c0"/>
+<use xlink:href="#p1" fill="url(#tile1)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="2520" y="2295" width="2160" height="540" id="p2"/>
+<pattern id="tile2" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="134">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -4,71 71,-4 M 63,138 138,63"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p2" fill="#f1ece0"/>
+<use xlink:href="#p2" fill="url(#tile2)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="3465" width="1305" height="270" fill="#000000"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="1215" width="1305" height="270" fill="#000000"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="2295" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="2025" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="1755" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="1485" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="2565" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="2835" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="3105" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="4545" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="4815" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="5085" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="5355" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="3465" width="1305" height="270" fill="#000000"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="1215" width="1305" height="270" fill="#000000"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="2295" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="2025" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="1755" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="1485" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="2565" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="2835" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="3105" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="4275" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="4545" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="4815" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="5085" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5265" y="5355" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="630" y="4275" width="1305" height="270" fill="#ffffff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="630" y="4005" width="1305" height="270" id="p3"/>
+<pattern id="tile3" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -7,37 73,-3 M 61,70 141,30"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p3" fill="#c0c0c0"/>
+<use xlink:href="#p3" fill="url(#tile3)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="630" y="3735" width="1305" height="270" id="p4"/>
+<pattern id="tile4" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="134">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -4,71 71,-4 M 63,138 138,63"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p4" fill="#f1ece0"/>
+<use xlink:href="#p4" fill="url(#tile4)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="5265" y="4005" width="1305" height="270" id="p5"/>
+<pattern id="tile5" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -7,37 73,-3 M 61,70 141,30"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p5" fill="#c0c0c0"/>
+<use xlink:href="#p5" fill="url(#tile5)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<rect x="5265" y="3735" width="1305" height="270" id="p6"/>
+<pattern id="tile6" patternUnits="userSpaceOnUse"
+	x="0" y="0" width="134" height="67">
+<g stroke-width="7.5" stroke="#000000" fill="none">
+<path d="M -7,30 73,70 M 61,-3 141,37"/>
+</g>
+</pattern>
+</defs>
+<use xlink:href="#p6" fill="#ffffff"/>
+<use xlink:href="#p6" fill="url(#tile6)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="450" y="1080" width="1710" height="5085" rx="105"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5085" y="1080" width="1710" height="5085" rx="105"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 438,293 H 11268 V 7042 H 438 z
+		M 5620,4148 5636,4173 5677,4137 5670,4126z"/>
+</clipPath>
+</defs>
+<polyline points=" 3643,5440 5668,4135" clip-path="url(#cp0)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 5668,4135 -->
+<polygon points=" 5636,4173 5653,4144 5620,4148 5636,4173"
+	stroke="#000000" stroke-width="15px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M 438,293 H 11268 V 7042 H 438 z
+		M 1418,4192 1434,4167 1384,4145 1377,4156z"/>
+</clipPath>
+</defs>
+<polyline points=" 3411,5459 1386,4154" clip-path="url(#cp1)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 1386,4154 -->
+<polygon points=" 1434,4167 1401,4163 1418,4192 1434,4167"
+	stroke="#000000" stroke-width="15px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<polyline points=" 7515,315 7515,7020"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Text -->
+<text xml:space="preserve" x="720" y="3645" fill="#ffffff" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Protection Keys</text>
+<!-- Text -->
+<text xml:space="preserve" x="720" y="1395" fill="#ffffff" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region Registers</text>
+<!-- Text -->
+<text xml:space="preserve" x="5355" y="3645" fill="#ffffff" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Protection Keys</text>
+<!-- Text -->
+<text xml:space="preserve" x="5355" y="1395" fill="#ffffff" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Region Registers</text>
+<!-- Text -->
+<text xml:space="preserve" x="2970" y="2025" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="144" text-anchor="start">Shared Region</text>
+<!-- Text -->
+<text xml:space="preserve" x="990" y="1935" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0x1000</text>
+<!-- Text -->
+<text xml:space="preserve" x="5670" y="1935" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">0x1000</text>
+<!-- Text -->
+<text xml:space="preserve" x="3150" y="5670" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="120" text-anchor="start">Shared Key</text>
+<!-- Text -->
+<text xml:space="preserve" x="1125" y="5985" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="120" text-anchor="start">Process 1</text>
+<!-- Text -->
+<text xml:space="preserve" x="5760" y="5985" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="120" text-anchor="start">Process 2</text>
+</g>
+</svg>
