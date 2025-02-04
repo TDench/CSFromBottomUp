@@ -55,51 +55,39 @@ Linux 核心實做了一個模組系統，也就是說，硬體驅動在需要�
 
 另外一個跟核心相關的概念就是硬體的虛擬化。現代的電腦效能非常的好，所以通常為把物理上的一台電腦，拆分成很多虛擬的電腦，每一個虛擬電腦都互相不影響，可以獨立完成任務，但實際上都是同一台電腦。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>這張圖呈現了三種不一樣的虛擬化， 左上是（1）虛擬器監視器(<em>virtual machine monitor, VMM, hypervisor</em>)，右上是 (2) 折衷的VMM ，作業系統需要直接要求其所需的資源</p></figcaption></figure>
 
-這個可以有很多種虛擬化的方法，最簡單的例子就是，虛擬器監視器(_virtual machine monitor, VMM, hypervisor_)，這個VMM會在直接運行在硬體上面，然後提供界面給客戶端的作業系統。客戶端的作業系統根本不知道有沒有VMM的存在，因為VMM長的就像一個硬體界面，他會攔截客戶端作業系統傳給硬體的訊息，然後動點手腳，或使只分配一部分的硬體資源給這個客戶端系統這樣。
+有很多種虛擬化的方法，最簡單的例子就是，虛擬器監視器(_virtual machine monitor, VMM, hypervisor_)，這個VMM會在直接運行在硬體上面，然後提供界面給客戶端的作業系統。客戶端的作業系統根本不知道有沒有VMM的存在，因為VMM長的就像一個硬體界面，他會攔截客戶端作業系統傳給硬體的訊息，然後動點手腳，或使只分配一部分的硬體資源給這個客戶端系統這樣。所以這種VMM 也被稱為(hypervisor, 來自於主管這個單字）
 
 這種作法通常用於大型的電腦(那種有很多CPU跟記憶體的那種電腦)，這樣做可以實現分割(partitioning)，也就是把機台拆分成很多小的虛擬機，當需要比較多計算量的時候，VMM可以動態的分配更多資源給虛擬機。許多大型的IBM伺服器都擁有這種功能，這種功能其實很複雜(上百萬行程式碼)，提供大量的伺服器管理服務。
 
-另外一種作法就是讓作業系統知道vmm的存在，然後透過vmm存取硬體資源。這種方法被稱為半虛擬化(_paravirtualisation)，_&#x65E9;期Xen系統就是用這種方式作為一個折衷的方案。希望這樣可以提供更好的效能，因為作業系統需要明確的要求vmm給予系統支援，而不是由 vmm 動態的解決分配資源的問題。
+另外一種作法就是讓作業系統知道VMM的存在，從而透過VMM存取硬體資源。這種方法被稱為半虛擬化(_paravirtualisation)_，早期的 Xen 系統採用了這種策略作為折衷方案。希望這樣可以提供更好的效能，因為作業系統需要明確的要求VMM給予系統支援，而不是由 VMM自動態的解決分配資源的問題。
 
-最後，還有一種情況是這樣：在現有的作業系統上面運行一個應用程式，這個應用程式就是一個虛擬化的作業系統(裡面包含CPU, 記憶體, 硬碟空間等)。這個應用程式會自己的虛擬作業系統裡面的應用程式的請求藉由現有的作業系統呼叫硬體，這個大概就是 VMWare 的工作原理。這種方法有很多成本(overheads)，因為這個應用程式需要模擬整個作業系統的運作，然後把應用層的請求轉換成底層的硬體操作。但是，這個可以讓我們在同一台電腦上模擬各種不同的作業系統，因為我們可以動態的翻譯不同的處理器的CPU 指令。(這就跟 Rosetta 從powerPC處理器到 intel 處理器，到ARM處理器都能使用的感覺)
+最後，還有一種情況是這樣：在現有的作業系統上面運行一個應用程式，這個應用程式就是一個虛擬化的作業系統(裡面包含CPU, 記憶體, 硬碟空間等)。應用程式透過底下的作業系統使用硬體的功能這個大概就是 VMWare 的工作原理。這種方法有很多成本(overheads)，因為這個應用程式需要模擬整個作業系統的運作，然後把應用程式的請求轉換成底層的硬體操作。但是，這個可以讓我們在同一台電腦上模擬各種不同的作業系統，因為我們可以動態的翻譯不同的處理器的CPU 指令。(這就跟 Rosetta 從powerPC處理器到 intel 處理器，到ARM處理器都能使用的感覺)
+
+這些虛擬化的技術最重要的問題就是性能， 因為本來可以直接在硬體上操作多了一層抽象層
+
+&#x20;Intel曾經討論過硬體支援虛擬化的功能， 而且已經實現在最新的處理器上。 怎麼做呢？當有應用程式要求一些作業系統共享的資源的時候會觸發一個特殊的異常(exception)， 這個異常會通知VMM ，讓 VMM 去處理資源分配的問題。
+
+這樣就提供了很不錯的效能， 因為虛擬機不需要時時刻刻去檢查每一個操作是否安全， 虛擬機只需要等到處理器 觸發異常的時候再處理就可以了。
 
 
 
-最后，您可能遇到这样的情况：在现有操作系统之上运行的应用程序提供了可以运行普通操作系统的虚拟化系统（包括 CPU，内存，BIOS，磁盘等）。应用程序通过现有操作系统将请求转换为底层硬件。这类似于 VMWare 的工作方式。这种方法有很多开销，因为应用程序进程必须模拟整个系统并将所有内容转换为来自底层操作系统的请求。但是，这使您可以一起模拟完全不同的体系结构，因为您可以将指令从一种处理器类型动态转换为另一种处理器类型（因为 Rosetta 系统使用从 PowerPC 处理器转移到基于 Intel 的处理器的 Apple 软件）。
+**虛擬化的小秘密**
 
-在使用任何这些虚拟化技术时，性能是主要问题，因为曾经直接在硬件上进行快速操作需要通过抽象层来实现。
+這是另外一個題外話， 一個有關於虛擬機的安全性問題： 如果不是靜態的做分割（partitioning） 也就是說動態的做分割會有安全性問題。
 
-英特尔已经讨论了即将推出最新处理器的虚拟化硬件支持。这些扩展通过为可能需要介入虚拟机监视器的操作引发特殊异常来工作。因此，处理器看起来与运行在其上的应用程序的非虚拟化处理器相同，但是当该应用程序请求可能在其他客户机操作系统之间共享的资源时，可以调用虚拟机监视器。
+在動態配置的虛擬系統會根據作業系統的需求去分配給作業系統。 也就是說：如果有一個人需要很多的CPU運算那另外一個人， 只是在等待硬碟回傳資料， 再這樣子的情況下第一個工作會分配比較多的CPU算力。
 
-这提供了卓越的性能，因为虚拟机监视器不需要监视每个操作以查看它是否安全，但可以等到处理器通知发生了不安全的事情。
+在這種情況下，事實上就可以讓兩個作業系統之間做一個交流，作者叫他 (_covert channel_) 作業系統去檢查他可以使用的資源的多寡就可以知道另外一個作業系統的狀態
 
-Finally, you may have a situation where an application running on top of the existing operating system presents a virtualised system (including CPU, memory, BIOS, disk, etc) which a plain operating system can run on. The application converts the requests to hardware through to the underlying hardware via the existing operating system. This is similar to how VMWare works. This approach has many overheads, as the application process has to emulate an entire system and convert everything to requests from the underlying operating system. However, this lets you emulate an entirely different architecture all together, as you can dynamically translate the instructions from one processor type to another (as the Rosetta system does with Apple software which moved from the PowerPC processor to Intel based processors).
+雖說這個大家都覺得有點牽強，但這個機制違反了安全性的問題
 
-Performance is major concern when using any of these virtualisation techniques, as what were once fast operations directly on hardware need to make their way through layers of abstraction.
+### 使用者空間(Userspace)
 
-Intel have discussed hardware support for virtualisation soon to be coming in their latest processors. These extensions work by raising a special exception for operations that might require the intervention of a virtual machine monitor. Thus the processor looks the same as a non-virtualised processor to the application running on it, but when that application makes requests for resources that might be shared between other guest operating systems, the virtual machine monitor can be invoked.
+我們把使用者的應用程式運行的地方叫做使用者空間， 使用者程式都執行在使用者空間，他們藉由系統呼叫(_system calls_) 跟核心溝通。
 
-This provides superior performance because the virtual machine monitor does not need to monitor every operation to see if it is safe, but can wait until the processor notifies that something _unsafe_ has happened.
-
-**2.1.2.1 Covert Channels**
-
-This is a digression, but an interesting security flaw relating to virtualised machines. If the partitioning of the system is not static, but rather _dynamic_, there is a potential security issue involved.
-
-In a dynamic system, resources are allocated to the operating systems running on top as required. Thus if one is doing particularly CPU intensive operations whilst the other is waiting on data to come from disks, more of the CPU power will be given to the first task. In a static system, each would get 50% an the unused portion would go to waste.
-
-Dynamic allocation actually opens up a communications channel between the two operating systems. Anywhere that two states can be indicated is sufficient to communicate in binary. Imagine both systems are extremely secure, and no information should be able to pass between one and the other, ever. Two people with access could collude to pass information between themselves by writing two programs that try to take large amounts of resources at the same time.
-
-When one takes a large amount of memory there is less available for the other. If both keep track of the maximum allocations, a bit of information can be transferred. Say they make a pact to check every second if they can allocate this large amount of memory. If the target can, that is considered binary 0, and if it can not (the other machine has all the memory), that is considered binary 1. A data rate of one bit per second is not astounding, but information is flowing.
-
-This is called a _covert channel_, and whilst admittedly far-fetched there have been examples of security breaches from such mechanisms. It just goes to show that the life of a systems programmer is never simple!
-
-#### 2.2 Userspace
-
-We call the theoretical place where programs are run by the user _userspace_. Each program runs in userspace, talking to the kernel through _system calls_ (discussed below).
-
-As previously discussed, userspace is _unprivileged_. User programs can only do a limited range of things, and should never be able to crash other programs, even if they crash themselves.
+我們剛討論的一樣使用者空間沒有特權(_unprivileged_) ，他們沒有辦法使其他的程式崩潰
 
 
 
