@@ -8,12 +8,12 @@
 
 所有處理器都有兩種記憶體模式的概念，要麻是物理模式，要麻虛擬記憶體模式。在物理模式下，硬體會期望地址就是真實的記憶體位置；在虛擬模式下，硬體知道需要翻譯之後才會是真實的記憶體位置。
 
-在許多處理器中，這兩種模式被簡單地稱為物理模式和虛擬模式，例如 intel Itanium 架構。而在最常見的 x86 處理器中，因為一些歷史的包袱，這兩個模式被稱為真實（ real） 跟保護（ _protected）_模式。第一個實現保護模式的是 i386 ，直到現在最新的 x86 仍然可以執行 real mode (雖然說沒有人這樣使用)。在 真實模式下，處理器會實施一種記憶體的分割，叫做 segmentation 。
+在許多處理器中，這兩種模式被簡單地稱為物理模式和虛擬模式，例如 intel Itanium 架構。而在最常見的 x86 處理器中，因為一些歷史的包袱，這兩個模式被稱為真實（ real） 跟保護（ _protected）_&#x6A21;式。第一個實現保護模式的是 i386 ，直到現在最新的 x86 仍然可以執行 real mode (雖然說沒有人這樣使用)。在 真實模式下，處理器會實施一種記憶體的分割，叫做 segmentation 。
 
 {% hint style="info" %}
 關於 x86 的 real mode 的 segmentation
 
-[https://en.wikipedia.org/wiki/X86\_memory\_segmentation#Real\_mode](https://en.wikipedia.org/wiki/X86\_memory\_segmentation#Real\_mode)
+[https://en.wikipedia.org/wiki/X86\_memory\_segmentation#Real\_mode](https://en.wikipedia.org/wiki/X86_memory_segmentation#Real_mode)
 {% endhint %}
 
 ### &#x20;**Segmentation 的問題？**
@@ -90,7 +90,7 @@ TLB 通常還有兩種常見的出錯，這種錯誤訊息有助於管理存取�
 
 ### **軟/硬體載入 TLB**
 
-雖然說最後都是作業系統掌控整個 TLB 。但這個只是部分的處理而已。在剛剛有提到（[page fault](hw\_support.md#page-faults)）描述了 page fault 是如何被作業系統處理的，發生 page fault -> OS 遍歷 page table 找關係 -> 關係寫入 TLB 這個流程稱為「軟體載入的 TLB」，但其實我們還有硬體載入 TLB 的選項。
+雖然說最後都是作業系統掌控整個 TLB 。但這個只是部分的處理而已。在剛剛有提到（[page fault](hw_support.md#page-faults)）描述了 page fault 是如何被作業系統處理的，發生 page fault -> OS 遍歷 page table 找關係 -> 關係寫入 TLB 這個流程稱為「軟體載入的 TLB」，但其實我們還有硬體載入 TLB 的選項。
 
 在硬體載入 TLB 的選項裡，處理器的架構會定義 page table 的格式，這樣才能做虛擬地址的轉換。在虛擬地址沒有在 TLB 的況下，處理器會自動遍歷整張 page table 然後載入正確的對應關係到 TLB 之中。只有在 page table 也找不到的情況下，處理器才會發出異常，請作業系統處理。
 
